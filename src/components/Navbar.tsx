@@ -4,10 +4,14 @@ import logo from "../assets/image.png";
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
+    const handleLinkClick = () => {
+        setIsOpen(false);
+    };
+
     return (
         <nav className="bg-white shadow-md fixed w-full z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between h-16 ">
+                <div className="flex justify-between h-16">
                     <div className="flex items-center">
                         <img
                             src={logo}
@@ -78,21 +82,25 @@ const Navbar = () => {
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                         <a
                             href="#guidelines"
+                            onClick={handleLinkClick}
                             className="block px-3 py-2 text-gray-600 hover:text-blue-600">
                             Guidelines
                         </a>
                         <a
                             href="#campus"
+                            onClick={handleLinkClick}
                             className="block px-3 py-2 text-gray-600 hover:text-blue-600">
                             Campus Visit
                         </a>
                         <a
                             href="#network"
+                            onClick={handleLinkClick}
                             className="block px-3 py-2 text-gray-600 hover:text-blue-600">
                             Network
                         </a>
                         <a
                             href="#donate"
+                            onClick={handleLinkClick}
                             className="block px-3 py-2 text-gray-600 hover:text-blue-600">
                             Donate
                         </a>

@@ -16,29 +16,29 @@ const Donate = () => {
                         <h3 className="text-xl font-semibold text-gray-900 mb-4">
                             Bank Details
                         </h3>
-                        <div className="space-y-3">
-                            <p className="flex justify-between">
+                        <div className="space-y-3 text-sm">
+                            <div className="flex flex-col sm:flex-row justify-between">
                                 <span className="font-medium">
                                     Account Name:
                                 </span>
                                 <span>ABV-IIITM ALUMNI ASSOCIATION</span>
-                            </p>
-                            <p className="flex justify-between">
+                            </div>
+                            <div className="flex flex-col sm:flex-row justify-between">
                                 <span className="font-medium">Bank:</span>
                                 <span>
                                     Bank of India (IIITM Campus, Gwalior)
                                 </span>
-                            </p>
-                            <p className="flex justify-between">
+                            </div>
+                            <div className="flex flex-col sm:flex-row justify-between">
                                 <span className="font-medium">
                                     Account Number:
                                 </span>
                                 <span>945210100125037</span>
-                            </p>
-                            <p className="flex justify-between">
+                            </div>
+                            <div className="flex flex-col sm:flex-row justify-between">
                                 <span className="font-medium">IFSC Code:</span>
                                 <span>BKID0009462</span>
-                            </p>
+                            </div>
                         </div>
                     </div>
 
