@@ -4,7 +4,7 @@ import Guidelines from "./components/Guidelines";
 import Campus from "./components/Campus";
 import Network from "./components/Network";
 import Donate from "./components/Donate";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 
 function App() {
     return (
@@ -17,7 +17,7 @@ function App() {
                 <Network />
                 <Donate />
             </main>
-            {/* <Footer /> */}
+            <Footer />
         </div>
     );
 }

@@ -15,9 +15,6 @@ const Navbar = () => {
                             className="h-12 w-auto"
                         />
                     </div>
-                    <div className="flex justify-between items-center ml-2 text-xl font-semibold text-gray-800">
-                        Alumini Meet
-                    </div>
 
                     <div className="hidden md:flex items-center space-x-8">
                         <a
