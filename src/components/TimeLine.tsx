@@ -1,16 +1,16 @@
 // import Image from "next/image";
-import React from 'react';
-import { Timeline } from './ui/TimeLine';
+// import React from 'react';
+import { Timeline } from "./ui/TimeLine";
 
 // Import Images
-import College1 from '../assets/College1.png';
-import College2 from '../assets/College2.png';
-import College3 from '../assets/College3.png';
+import College1 from "../assets/College1.png";
+import College2 from "../assets/College2.png";
+import College3 from "../assets/College3.png";
 
 function TimelineDemo() {
     const data = [
         {
-            title: 'Day 1 - Sports Competitions',
+            title: "Day 1 - Sports Competitions",
             content: (
                 <div>
                     <p className="text-gray-800 text-xs md:text-sm font-normal mb-8">
@@ -27,7 +27,7 @@ function TimelineDemo() {
             ),
         },
         {
-            title: 'Early 2023',
+            title: "Early 2023",
             content: (
                 <div>
                     <p className="text-gray-800 text-xs md:text-sm font-normal mb-8">
@@ -45,7 +45,7 @@ function TimelineDemo() {
             ),
         },
         {
-            title: 'Changelog',
+            title: "Changelog",
             content: (
                 <div>
                     <p className="text-gray-800 text-xs md:text-sm font-normal mb-4">
