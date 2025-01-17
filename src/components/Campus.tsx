@@ -18,7 +18,7 @@ const Campus = () => {
                         </h3>
                         <ul className="space-y-4">
                             <li className="flex items-start">
-                                <span className="flex-shrink-0 h-6 w-6 text-blue-600">
+                                <span className="flex-shrink-0 h-6 w-6 text-customBlue">
                                     •
                                 </span>
                                 <span className="ml-3 text-gray-600">
@@ -27,7 +27,7 @@ const Campus = () => {
                                 </span>
                             </li>
                             <li className="flex items-start">
-                                <span className="flex-shrink-0 h-6 w-6 text-blue-600">
+                                <span className="flex-shrink-0 h-6 w-6 text-customBlue">
                                     •
                                 </span>
                                 <span className="ml-3 text-gray-600">
@@ -50,7 +50,7 @@ const Campus = () => {
                             <a
                                 href="https://iiitm.ac.in/images/2024/July_2024/Visitor-Hostel-Guest-House-Booking-Form-1.pdf"
                                 target="_blank"
-                                className="inline-block text-blue-600 hover:text-blue-800">
+                                className="inline-block text-customBlue hover:text-customBlue">
                                 Download Booking Form →
                             </a>
                             <p className="text-sm text-gray-500 mt-2">
@@ -69,19 +69,19 @@ const Campus = () => {
                         </p>
                         <ul className="space-y-2">
                             <li className="flex items-center">
-                                <span className="text-blue-600 mr-2">✓</span>
+                                <span className="text-customBlue mr-2">✓</span>
                                 Campus tours
                             </li>
                             <li className="flex items-center">
-                                <span className="text-blue-600 mr-2">✓</span>
+                                <span className="text-customBlue mr-2">✓</span>
                                 Student interactions
                             </li>
                             <li className="flex items-center">
-                                <span className="text-blue-600 mr-2">✓</span>
+                                <span className="text-customBlue mr-2">✓</span>
                                 Faculty meetings
                             </li>
                             <li className="flex items-center">
-                                <span className="text-blue-600 mr-2">✓</span>
+                                <span className="text-customBlue mr-2">✓</span>
                                 Accommodation coordination
                             </li>
                         </ul>
@@ -96,7 +96,7 @@ const Campus = () => {
                         </p>
                         <ul className="space-y-4">
                             <li className="flex items-start">
-                                <span className="flex-shrink-0 h-6 w-6 text-blue-600">
+                                <span className="flex-shrink-0 h-6 w-6 text-customBlue">
                                     •
                                 </span>
                                 <span className="ml-3 text-gray-600">
@@ -104,7 +104,7 @@ const Campus = () => {
                                 </span>
                             </li>
                             <li className="flex items-start">
-                                <span className="flex-shrink-0 h-6 w-6 text-blue-600">
+                                <span className="flex-shrink-0 h-6 w-6 text-customBlue">
                                     •
                                 </span>
                                 <span className="ml-3 text-gray-600">
@@ -112,7 +112,7 @@ const Campus = () => {
                                 </span>
                             </li>
                             <li className="flex items-start">
-                                <span className="flex-shrink-0 h-6 w-6 text-blue-600">
+                                <span className="flex-shrink-0 h-6 w-6 text-customBlue">
                                     •
                                 </span>
                                 <span className="ml-3 text-gray-600">

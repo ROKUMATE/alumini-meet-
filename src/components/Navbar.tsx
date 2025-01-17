@@ -11,40 +11,43 @@ const Navbar = () => {
     return (
         <nav className="bg-white shadow-md fixed w-full z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between h-16">
+                <div className="flex justify-between h-20">
                     <div className="flex items-center">
                         <img
                             src={logo}
                             alt="IIITM Logo"
-                            className="h-12 w-auto"
+                            className="h-16 w-auto"
                         />
+                        {/* <span className="bold text-customBlue">
+                            {" "}ABV IIITM Gwalior
+                        </span> */}
                     </div>
 
                     <div className="hidden md:flex items-center space-x-8">
                         <a
                             href="#guidelines"
-                            className="text-gray-600 hover:text-blue-600">
+                            className="text-gray-600 hover:text-customBlue">
                             Guidelines
                         </a>
                         <a
                             href="#campus"
-                            className="text-gray-600 hover:text-blue-600">
+                            className="text-gray-600 hover:text-customBlue">
                             Campus Visit
                         </a>
                         <a
                             href="#network"
-                            className="text-gray-600 hover:text-blue-600">
+                            className="text-gray-600 hover:text-customBlue">
                             Network
                         </a>
                         <a
                             href="#donate"
-                            className="text-gray-600 hover:text-blue-600">
+                            className="text-gray-600 hover:text-customBlue">
                             Donate
                         </a>
                         <a
                             href="https://forms.gle/jpsTnk42FB8514jE8"
                             target="_blank"
-                            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                            className="bg-customBlue text-white px-4 py-2 rounded-md hover:bg-blue-700">
                             Join Alumni Cell
                         </a>
                     </div>
@@ -83,25 +86,25 @@ const Navbar = () => {
                         <a
                             href="#guidelines"
                             onClick={handleLinkClick}
-                            className="block px-3 py-2 text-gray-600 hover:text-blue-600">
+                            className="block px-3 py-2 text-gray-600 hover:text-customBlue">
                             Guidelines
                         </a>
                         <a
                             href="#campus"
                             onClick={handleLinkClick}
-                            className="block px-3 py-2 text-gray-600 hover:text-blue-600">
+                            className="block px-3 py-2 text-gray-600 hover:text-customBlue">
                             Campus Visit
                         </a>
                         <a
                             href="#network"
                             onClick={handleLinkClick}
-                            className="block px-3 py-2 text-gray-600 hover:text-blue-600">
+                            className="block px-3 py-2 text-gray-600 hover:text-customBlue">
                             Network
                         </a>
                         <a
                             href="#donate"
                             onClick={handleLinkClick}
-                            className="block px-3 py-2 text-gray-600 hover:text-blue-600">
+                            className="block px-3 py-2 text-gray-600 hover:text-customBlue">
                             Donate
                         </a>
                     </div>
