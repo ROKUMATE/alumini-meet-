@@ -7,7 +7,7 @@ import Donate from "./components/Donate";
 import Footer from "./components/Footer";
 import Images from "./components/StarterImages";
 import TimeLines from "./components/TimeLine";
-import Poster from "./components/Poster";
+// import Poster from "./components/Poster";
 
 function App() {
     return (
