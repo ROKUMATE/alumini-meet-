@@ -1,12 +1,13 @@
-import Image from "../assets/Poster.png";
+import Image from '../assets/Poster.png';
 
 const Hero = () => {
     return (
-        <div className="pt-16 bg-gradient-to-b from-blue-50 to-white">
-            <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col md:flex-row items-center">
-                <div className="text-center md:text-left md:w-1/2">
+        <div className="pt-16 bg-gradient-to-b from-blue-50 to-white flex items-center justify-center min-h-screen">
+            <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center">
+                <div className="text-center">
                     <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
                         <span className="block">Welcome to</span>
+                        <span className="block text-customBlue">
                         <span className="block text-customBlue">
                             ABV-IIITM Alumni Network
                         </span>
@@ -39,7 +40,7 @@ const Hero = () => {
                         series of events that still are packed deep inside your
                         heart, labelled - "The College Diaries"
                     </p>
-                    <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:justify-start md:mt-8">
+                    <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:justify-center md:mt-8">
                         <div className="rounded-md shadow">
                             <a
                                 href="https://forms.gle/jpsTnk42FB8514jE8"

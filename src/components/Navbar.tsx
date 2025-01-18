@@ -1,5 +1,5 @@
-import { useState } from "react";
-import logo from "../assets/image.png";
+import { useState } from 'react';
+import logo from '../assets/image.png';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,14 +12,17 @@ const Navbar = () => {
         <nav className="bg-white shadow-md fixed w-full z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-20">
+                <div className="flex justify-between h-20">
                     <div className="flex items-center">
                         <img
                             src={logo}
                             alt="IIITM Logo"
                             className="h-16 w-auto"
+                            className="h-16 w-auto"
                         />
                         {/* <span className="bold text-customBlue">
-                            {" "}ABV IIITM Gwalior
+                            {' '}
+                            ABV IIITM Gwalior
                         </span> */}
                     </div>
 
@@ -27,26 +30,31 @@ const Navbar = () => {
                         <a
                             href="#guidelines"
                             className="text-gray-600 hover:text-customBlue">
+                            className="text-gray-600 hover:text-customBlue">
                             Guidelines
                         </a>
                         <a
                             href="#campus"
+                            className="text-gray-600 hover:text-customBlue">
                             className="text-gray-600 hover:text-customBlue">
                             Campus Visit
                         </a>
                         <a
                             href="#network"
                             className="text-gray-600 hover:text-customBlue">
+                            className="text-gray-600 hover:text-customBlue">
                             Network
                         </a>
                         <a
                             href="#donate"
+                            className="text-gray-600 hover:text-customBlue">
                             className="text-gray-600 hover:text-customBlue">
                             Donate
                         </a>
                         <a
                             href="https://forms.gle/jpsTnk42FB8514jE8"
                             target="_blank"
+                            className="bg-customBlue text-white px-4 py-2 rounded-md hover:bg-blue-700">
                             className="bg-customBlue text-white px-4 py-2 rounded-md hover:bg-blue-700">
                             Join Alumni Cell
                         </a>
@@ -69,8 +77,8 @@ const Navbar = () => {
                                     strokeWidth={2}
                                     d={
                                         isOpen
-                                            ? "M6 18L18 6M6 6l12 12"
-                                            : "M4 6h16M4 12h16M4 18h16"
+                                            ? 'M6 18L18 6M6 6l12 12'
+                                            : 'M4 6h16M4 12h16M4 18h16'
                                     }
                                 />
                             </svg>
@@ -87,11 +95,13 @@ const Navbar = () => {
                             href="#guidelines"
                             onClick={handleLinkClick}
                             className="block px-3 py-2 text-gray-600 hover:text-customBlue">
+                            className="block px-3 py-2 text-gray-600 hover:text-customBlue">
                             Guidelines
                         </a>
                         <a
                             href="#campus"
                             onClick={handleLinkClick}
+                            className="block px-3 py-2 text-gray-600 hover:text-customBlue">
                             className="block px-3 py-2 text-gray-600 hover:text-customBlue">
                             Campus Visit
                         </a>
@@ -99,11 +109,13 @@ const Navbar = () => {
                             href="#network"
                             onClick={handleLinkClick}
                             className="block px-3 py-2 text-gray-600 hover:text-customBlue">
+                            className="block px-3 py-2 text-gray-600 hover:text-customBlue">
                             Network
                         </a>
                         <a
                             href="#donate"
                             onClick={handleLinkClick}
+                            className="block px-3 py-2 text-gray-600 hover:text-customBlue">
                             className="block px-3 py-2 text-gray-600 hover:text-customBlue">
                             Donate
                         </a>
