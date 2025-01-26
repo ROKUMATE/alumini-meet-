@@ -5,6 +5,8 @@ import Campus from './components/Campus';
 import Network from './components/Network';
 import Donate from './components/Donate';
 import Footer from './components/Footer';
+import Message from './components/Message';
+import Contact from './components/Contact';
 // import Images from './components/StarterImages';
 // import TimeLines from './components/TimeLine';
 // import Poster from "./components/Poster";
@@ -22,6 +24,8 @@ function App() {
                 <Campus />
                 <Network />
                 <Donate />
+                <Message />
+                <Contact />
             </main>
             <Footer />
         </div>
