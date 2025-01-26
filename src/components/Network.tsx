@@ -73,6 +73,9 @@ const Network = () => {
                                     Alumni Association
                                 </a>
                             </li>
+                            <li>
+                                <p className="flex items-center text-blue-600">To join IIITM WhatsApp Group, contact Kunal Vardani at +91 99296 46997</p>
+                            </li>
                         </ul>
                     </div>
 
@@ -81,11 +84,11 @@ const Network = () => {
                             Local Chapters
                         </h3>
                         <p className="text-gray-600 mb-4">
-                            Join or start a local chapter in your city
+                            Coming soon...
                         </p>
-                        <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                        {/* <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
                             Contact for Details
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </div>

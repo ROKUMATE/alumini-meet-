@@ -35,6 +35,14 @@ const Campus = () => {
                                     alumninet@iiitm.ac.in
                                 </span>
                             </li>
+                            <li className="flex items-start">
+                                <span className="flex-shrink-0 h-6 w-6 text-customBlue">
+                                    •
+                                </span>
+                                <span className="ml-3 text-gray-600">
+                                    Any special requirements
+                                </span>
+                            </li>
                         </ul>
                     </div>
 
@@ -54,8 +62,7 @@ const Campus = () => {
                                 Download Booking Form →
                             </a>
                             <p className="text-sm text-gray-500 mt-2">
-                                Pro Tip: No need to print the form. Fill it at
-                                check-in. Digital payments accepted.
+                                Pro Tip: Fill this form and send to alumninet@iiitm.ac.in. No need to fill the form just email us the details.
                             </p>
                         </div>
                     </div>
@@ -83,6 +90,9 @@ const Campus = () => {
                             <li className="flex items-center">
                                 <span className="text-customBlue mr-2">✓</span>
                                 Accommodation coordination
+                            </li>
+                            <li className="flex items-center font-semibold">
+                                Email the visit details at alumninet@iiitm.ac.in
                             </li>
                         </ul>
                     </div>
@@ -118,6 +128,9 @@ const Campus = () => {
                                 <span className="ml-3 text-gray-600">
                                     AlumniConnect formal sessions
                                 </span>
+                            </li>
+                            <li className="flex items-center font-semibold">
+                                Connect with us at alumninet@iiitm.ac.in
                             </li>
                         </ul>
                     </div>

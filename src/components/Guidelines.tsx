@@ -15,7 +15,7 @@ const Guidelines = () => {
                 <div className="mt-12 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     <div className="bg-blue-50 rounded-lg p-6">
                         <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                            Getting Started
+                            Privileges for applying
                         </h3>
                         <ul className="space-y-4">
                             <li className="flex items-start">
@@ -23,7 +23,7 @@ const Guidelines = () => {
                                     ✓
                                 </span>
                                 <span className="ml-3 text-gray-600">
-                                    Fill out the alumni registration form
+                                    Issue Alumni Card
                                 </span>
                             </li>
                             <li className="flex items-start">
@@ -31,7 +31,7 @@ const Guidelines = () => {
                                     ✓
                                 </span>
                                 <span className="ml-3 text-gray-600">
-                                    Receive your digital alumni card
+                                    Membership of mailing list
                                 </span>
                             </li>
                             <li className="flex items-start">
@@ -39,7 +39,7 @@ const Guidelines = () => {
                                     ✓
                                 </span>
                                 <span className="ml-3 text-gray-600">
-                                    Join the alumni mailing list
+                                    Discounted on-campus accomodation
                                 </span>
                             </li>
                         </ul>

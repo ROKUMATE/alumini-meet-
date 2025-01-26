@@ -7,7 +7,7 @@ const Donate = () => {
                         Support Your Alma Mater
                     </h2>
                     <p className="mt-4 text-xl text-gray-500">
-                        Help us nurture the next generation
+                        Help us nurture the next generation. We require alumni to donate generously to following accounts and send the slip at alumninet@iiitm.ac.in
                     </p>
                 </div>
 
@@ -80,12 +80,17 @@ const Donate = () => {
                                     Research labs and development activities
                                 </span>
                             </li>
+                            <li className="flex items-start">
+                                <span className="ml-3 text-gray-600">
+                                    If supporting any special initiatives like following the please explicitly mention at the donation email at alumninet@iiitm.ac.in.
+                                </span>
+                            </li>
                         </ul>
                     </div>
 
                     <div className="lg:col-span-2 bg-white rounded-lg shadow-md p-6">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                            Other Ways to Contribute
+                        <h3 className="text-xl font-semibold text-gray-900 mb-5">
+                            We welcome alumni to support the following in kind contributions. For details, please contact us at alumninet@iiitm.ac.in.
                         </h3>
                         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                             <div className="p-4 bg-blue-50 rounded-lg">
