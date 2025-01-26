@@ -23,7 +23,7 @@ const ContactCard = () => {
                     <div className="mt-4 flex items-center gap-4 bg-blue-50 rounded-lg p-4">
                         <Phone className="text-blue-600 w-6 h-6" />
                         <p className="text-lg font-medium text-gray-800">
-                            +91-XXXXXXXXXX
+                            +91-XXXXX XXXXX
                         </p>
                     </div>
                 </div>
