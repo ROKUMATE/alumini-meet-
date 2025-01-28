@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Gallery = () => {
   return (
     <section className="py-16 px-4 bg-gray-50">

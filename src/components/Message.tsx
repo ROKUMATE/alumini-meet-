@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Message = () => {
   return (
     <section className="py-16 px-4 bg-blue-50">
