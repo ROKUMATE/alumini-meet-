@@ -7,6 +7,7 @@ import Donate from './components/Donate';
 import Footer from './components/Footer';
 import Message from './components/Message';
 import Contact from './components/Contact';
+import Gallery from './components/Gallery';
 // import Images from './components/StarterImages';
 // import TimeLines from './components/TimeLine';
 // import Poster from "./components/Poster";
@@ -26,6 +27,7 @@ function App() {
                 <Donate />
                 <Message />
                 <Contact />
+                <Gallery />
             </main>
             <Footer />
         </div>
