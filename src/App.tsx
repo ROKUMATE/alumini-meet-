@@ -18,6 +18,8 @@ function App() {
             <Navbar />
             <main>
                 {/* <Images /> */}
+                <Gallery />
+                <Message />
                 <Hero />
                 {/* <TimeLines /> */}
                 {/* <Poster /> */}
@@ -25,9 +27,9 @@ function App() {
                 <Campus />
                 <Network />
                 <Donate />
-                <Message />
+                
                 <Contact />
-                <Gallery />
+                
             </main>
             <Footer />
         </div>
