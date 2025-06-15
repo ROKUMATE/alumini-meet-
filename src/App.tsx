@@ -27,9 +27,7 @@ function App() {
                 <Campus />
                 <Network />
                 <Donate />
-                
                 <Contact />
-                
             </main>
             <Footer />
         </div>
