@@ -5,6 +5,9 @@ interface Alumni {
     rollNumber: string;
     department?: string;
     yearOfGraduation?: number;
+    company?: string;
+    city?: string;
+    batch?: string;
 }
 
 const DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
@@ -12,12 +15,18 @@ const DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
 const Network: React.FC = () => {
     const [nameQuery, setNameQuery] = useState('');
     const [rollQuery, setRollQuery] = useState('');
+    const [companyQuery, setCompanyQuery] = useState('');
+    const [cityQuery, setCityQuery] = useState('');
+    const [batchQuery, setBatchQuery] = useState('');
     const [results, setResults] = useState<Alumni[]>([]);
 
     const handleSearch = async () => {
         const params = new URLSearchParams();
         if (nameQuery) params.append('name', nameQuery);
         if (rollQuery) params.append('rollNumber', rollQuery);
+        if (companyQuery) params.append('company', companyQuery);
+        if (cityQuery) params.append('city', cityQuery);
+        if (batchQuery) params.append('batch', batchQuery);
         const url = DATABASE_URL + `api/search?${params.toString()}`;
 
         const res = await fetch(url);
@@ -42,26 +51,49 @@ const Network: React.FC = () => {
                     <h3 className="text-2xl font-semibold text-gray-900 mb-4">
                         Search Alumni
                     </h3>
-                    <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                        <input
-                            type="text"
-                            placeholder="Search by Name"
-                            value={nameQuery}
-                            onChange={(e) => setNameQuery(e.target.value)}
-                            className="border border-gray-300 rounded-md p-2 flex-1"
-                        />
-                        <input
-                            type="text"
-                            placeholder="Search by Roll Number"
-                            value={rollQuery}
-                            onChange={(e) => setRollQuery(e.target.value)}
-                            className="border border-gray-300 rounded-md p-2 flex-1"
-                        />
-                        <button
-                            onClick={handleSearch}
-                            className="bg-customBlue text-white px-4 py-2 rounded-md hover:bg-blue-700">
-                            Search
-                        </button>
+                    <div className="flex flex-col gap-4 mb-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <input
+                                type="text"
+                                placeholder="Search by Name"
+                                value={nameQuery}
+                                onChange={(e) => setNameQuery(e.target.value)}
+                                className="border border-gray-300 rounded-md p-2 flex-1"
+                            />
+                            <input
+                                type="text"
+                                placeholder="Search by Roll Number"
+                                value={rollQuery}
+                                onChange={(e) => setRollQuery(e.target.value)}
+                                className="border border-gray-300 rounded-md p-2 flex-1"
+                            />
+                            <input
+                                type="text"
+                                placeholder="Search by Company"
+                                value={companyQuery}
+                                onChange={(e) => setCompanyQuery(e.target.value)}
+                                className="border border-gray-300 rounded-md p-2 flex-1"
+                            />
+                            <input
+                                type="text"
+                                placeholder="Search by City"
+                                value={cityQuery}
+                                onChange={(e) => setCityQuery(e.target.value)}
+                                className="border border-gray-300 rounded-md p-2 flex-1"
+                            />
+                            <input
+                                type="text"
+                                placeholder="Search by Batch"
+                                value={batchQuery}
+                                onChange={(e) => setBatchQuery(e.target.value)}
+                                className="border border-gray-300 rounded-md p-2 flex-1"
+                            />
+                            <button
+                                onClick={handleSearch}
+                                className="bg-customBlue text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                                Search
+                            </button>
+                        </div>
                     </div>
 
                     {/* Results */}
@@ -84,6 +116,15 @@ const Network: React.FC = () => {
                                         <th className="px-4 py-2 border">
                                             Graduation Year
                                         </th>
+                                        <th className="px-4 py-2 border">
+                                            Company
+                                        </th>
+                                        <th className="px-4 py-2 border">
+                                            City
+                                        </th>
+                                        <th className="px-4 py-2 border">
+                                            Batch
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -101,6 +142,15 @@ const Network: React.FC = () => {
                                             <td className="px-4 py-2 border">
                                                 {alumni.yearOfGraduation ??
                                                     'NA'}
+                                            </td>
+                                            <td className="px-4 py-2 border">
+                                                {alumni.company || 'NA'}
+                                            </td>
+                                            <td className="px-4 py-2 border">
+                                                {alumni.city || 'NA'}
+                                            </td>
+                                            <td className="px-4 py-2 border">
+                                                {alumni.batch || 'NA'}
                                             </td>
                                         </tr>
                                     ))}

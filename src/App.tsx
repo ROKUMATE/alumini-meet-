@@ -23,8 +23,8 @@ function App() {
                 <Hero />
                 {/* <TimeLines /> */}
                 {/* <Poster /> */}
-                <Guidelines />
                 <Campus />
+                <Guidelines />
                 <Network />
                 <Donate />
                 <Contact />
