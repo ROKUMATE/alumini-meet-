@@ -5,8 +5,9 @@ interface Alumni {
     rollNumber: string;
     department?: string;
     yearOfGraduation?: number;
-    company?: string;
-    city?: string;
+    lastOrganization?: string;
+    currentLocationIndia?: string;
+    currentOverseasLocation?: string;
     batch?: string;
 }
 
@@ -144,13 +145,10 @@ const Network: React.FC = () => {
                                                     'NA'}
                                             </td>
                                             <td className="px-4 py-2 border">
-                                                {alumni.company || 'NA'}
+                                                {alumni.lastOrganization || 'NA'}
                                             </td>
                                             <td className="px-4 py-2 border">
-                                                {alumni.city || 'NA'}
-                                            </td>
-                                            <td className="px-4 py-2 border">
-                                                {alumni.batch || 'NA'}
+                                                {alumni.currentLocationIndia || alumni.currentOverseasLocation || 'NA'}
                                             </td>
                                         </tr>
                                     ))}
