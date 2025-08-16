@@ -32,7 +32,7 @@ Prof. Sri Niwas Singh
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
             <div className="h-[300px]">
               <img 
-                src="https://www.cdpcelliiitmg.info/images/coordinator.png" 
+                src="https://www.iiitm.ac.in/images/demo/teachers/1686288088_pksingh%20(2).jpg" 
                 alt="Second message" 
                 className="w-full h-full object-contain"
               />
@@ -48,7 +48,7 @@ On behalf of office of Career Development & Placement Cell services at IIITM Gwa
 
 Thanks,
 <br />
-Prof. Anurag Srivastava
+Prof. Pramod Kumar Singh
               </p>
             </div>
           </div>
