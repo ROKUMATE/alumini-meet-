@@ -1,4 +1,7 @@
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import React, { useState } from 'react';
+import { Search, Edit } from 'lucide-react';
+import UpdateDetailsDialog from './UpdateDetailsDialog';
 
 interface Alumni {
     name: string;
@@ -9,260 +12,385 @@ interface Alumni {
     currentLocationIndia?: string;
     currentOverseasLocation?: string;
     batch?: string;
+    gender?: string;
+    yearOfEntry?: number;
+    programName?: string;
+    specialization?: string;
+    lastPosition?: string;
+    natureOfJob?: string;
+    email?: string;
+    phone?: string;
+    linkedIn?: string;
+    twitter?: string;
+    instagram?: string;
+    facebook?: string;
+    hostels?: string;
+    higherStudies?: string;
+    startup?: string;
+    achievements?: string;
+    photoLink?: string;
 }
 
 const DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
 
 const Network: React.FC = () => {
+    const headerRef = useScrollAnimation({ yStart: 50, opacityStart: 0 });
+    const searchRef = useScrollAnimation({ yStart: 80, opacityStart: 0, delay: 0.2 });
     const [nameQuery, setNameQuery] = useState('');
     const [rollQuery, setRollQuery] = useState('');
     const [companyQuery, setCompanyQuery] = useState('');
     const [cityQuery, setCityQuery] = useState('');
     const [batchQuery, setBatchQuery] = useState('');
     const [results, setResults] = useState<Alumni[]>([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageSize] = useState(20);
+    const [hasMore, setHasMore] = useState(false);
+    const [totalCount, setTotalCount] = useState(0);
+    const [hasSearched, setHasSearched] = useState(false);
+    const [selectedAlumni, setSelectedAlumni] = useState<Alumni | null>(null);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [hoveredRow, setHoveredRow] = useState<string | null>(null);
 
-    const handleSearch = async () => {
-        const params = new URLSearchParams();
-        if (nameQuery) params.append('name', nameQuery);
-        if (rollQuery) params.append('rollNumber', rollQuery);
-        if (companyQuery) params.append('company', companyQuery);
-        if (cityQuery) params.append('city', cityQuery);
-        if (batchQuery) params.append('batch', batchQuery);
-        const url = DATABASE_URL + `api/search?${params.toString()}`;
+    const handleSearch = async (page: number = 1) => {
+        setLoading(true);
+        setError(null);
+        setHasSearched(true);
+        
+        try {
+            const params = new URLSearchParams();
+            if (nameQuery) params.append('name', nameQuery);
+            if (rollQuery) params.append('rollNumber', rollQuery);
+            if (companyQuery) params.append('company', companyQuery);
+            if (cityQuery) params.append('city', cityQuery);
+            if (batchQuery) params.append('batch', batchQuery);
+            params.append('page', page.toString());
+            params.append('limit', pageSize.toString());
+            
+            const url = DATABASE_URL + `api/search?${params.toString()}`;
 
-        const res = await fetch(url);
-        const { data } = await res.json();
-        setResults(data);
+            const res = await fetch(url);
+            if (!res.ok) {
+                throw new Error('Failed to fetch results');
+            }
+            
+            const { data, totalCount: total, hasMore: more } = await res.json();
+            setResults(data);
+            setCurrentPage(page);
+            setTotalCount(total || 0);
+            setHasMore(more || false);
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'An error occurred during search');
+            setResults([]);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            handleSearch(currentPage - 1);
+        }
+    };
+
+    const handleNextPage = () => {
+        if (hasMore) {
+            handleSearch(currentPage + 1);
+        }
+    };
+
+    const handleUpdateClick = (alumni: Alumni) => {
+        console.log('Update button clicked for alumni:', alumni);
+        setSelectedAlumni(alumni);
+        setIsDialogOpen(true);
+        console.log('Dialog should now open with isDialogOpen=true');
+    };
+
+    const handleUpdateSubmit = async (updatedData: Partial<Alumni>) => {
+        const url = DATABASE_URL + 'api/update-request';
+        
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                rollNumber: selectedAlumni?.rollNumber,
+                oldData: selectedAlumni,
+                newData: updatedData,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to submit update request');
+        }
     };
 
     return (
-        <section id="network" className="py-16 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center">
-                    <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+        <section id="network" className="py-20 px-4 bg-transparent">
+            <div className="max-w-7xl mx-auto">
+                {/* Header */}
+                <div className="text-center mb-16" ref={headerRef}>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
                         Alumni Network
                     </h2>
-                    <p className="mt-4 text-xl text-gray-500">
-                        Stay connected with the IIITM community
+                    <p className="text-gray-300 text-lg">
+                        Connect with thousands of IIITM alumni worldwide
                     </p>
                 </div>
 
-                {/* Search Section */}
-                <div className="mt-12">
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                        Search Alumni
-                    </h3>
-                    <div className="flex flex-col gap-4 mb-6">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                            <input
-                                type="text"
-                                placeholder="Search by Name"
-                                value={nameQuery}
-                                onChange={(e) => setNameQuery(e.target.value)}
-                                className="border border-gray-300 rounded-md p-2 flex-1"
-                            />
-                            <input
-                                type="text"
-                                placeholder="Search by Roll Number"
-                                value={rollQuery}
-                                onChange={(e) => setRollQuery(e.target.value)}
-                                className="border border-gray-300 rounded-md p-2 flex-1"
-                            />
-                            <input
-                                type="text"
-                                placeholder="Search by Company"
-                                value={companyQuery}
-                                onChange={(e) => setCompanyQuery(e.target.value)}
-                                className="border border-gray-300 rounded-md p-2 flex-1"
-                            />
-                            <input
-                                type="text"
-                                placeholder="Search by City"
-                                value={cityQuery}
-                                onChange={(e) => setCityQuery(e.target.value)}
-                                className="border border-gray-300 rounded-md p-2 flex-1"
-                            />
-                            <input
-                                type="text"
-                                placeholder="Search by Batch"
-                                value={batchQuery}
-                                onChange={(e) => setBatchQuery(e.target.value)}
-                                className="border border-gray-300 rounded-md p-2 flex-1"
-                            />
-                            <button
-                                onClick={handleSearch}
-                                className="bg-customBlue text-white px-4 py-2 rounded-md hover:bg-blue-700">
-                                Search
-                            </button>
+                {/* Search Card - Prominent */}
+                <div className="mb-12 bg-gray-900 rounded-3xl shadow-2xl overflow-hidden border-2 border-gray-700" ref={searchRef}>
+                    <div className="bg-gray-800 px-8 py-8">
+                        <div className="flex items-center gap-3 mb-2">
+                            <Search className="w-8 h-8 text-white" />
+                            <h3 className="text-3xl font-bold text-white">
+                                Find Alumni
+                            </h3>
                         </div>
+                        <p className="text-gray-300">Search by name, roll number, company, location, and more</p>
                     </div>
 
-                    {/* Results */}
-                    {results.length === 0 ? (
-                        <p className="text-gray-500">No results found.</p>
-                    ) : (
-                        <div className="overflow-x-auto">
-                            <table className="min-w-full bg-white">
+                    <div className="p-8 bg-gray-900">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+                            <div className="relative">
+                                <label className="block text-sm font-semibold text-gray-200 mb-2">Name</label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter name"
+                                    value={nameQuery}
+                                    onChange={(e) => setNameQuery(e.target.value)}
+                                    className="w-full border-2 border-gray-700 bg-gray-800 text-gray-100 rounded-lg p-3 focus:border-gray-500 focus:outline-none focus:shadow-lg transition-all placeholder-gray-500"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-200 mb-2">Roll Number</label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter roll no"
+                                    value={rollQuery}
+                                    onChange={(e) => setRollQuery(e.target.value)}
+                                    className="w-full border-2 border-gray-700 bg-gray-800 text-gray-100 rounded-lg p-3 focus:border-gray-500 focus:outline-none focus:shadow-lg transition-all placeholder-gray-500"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-200 mb-2">Company</label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter company"
+                                    value={companyQuery}
+                                    onChange={(e) => setCompanyQuery(e.target.value)}
+                                    className="w-full border-2 border-gray-700 bg-gray-800 text-gray-100 rounded-lg p-3 focus:border-gray-500 focus:outline-none focus:shadow-lg transition-all placeholder-gray-500"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-200 mb-2">City</label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter city"
+                                    value={cityQuery}
+                                    onChange={(e) => setCityQuery(e.target.value)}
+                                    className="w-full border-2 border-gray-700 bg-gray-800 text-gray-100 rounded-lg p-3 focus:border-gray-500 focus:outline-none focus:shadow-lg transition-all placeholder-gray-500"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-200 mb-2">Batch</label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter batch"
+                                    value={batchQuery}
+                                    onChange={(e) => setBatchQuery(e.target.value)}
+                                    className="w-full border-2 border-gray-700 bg-gray-800 text-gray-100 rounded-lg p-3 focus:border-gray-500 focus:outline-none focus:shadow-lg transition-all placeholder-gray-500"
+                                />
+                            </div>
+                        </div>
+
+                        <button
+                            onClick={() => handleSearch(1)}
+                            disabled={loading}
+                            className="w-full bg-blue-600 text-white font-bold py-4 rounded-lg hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
+                        >
+                            <Search className="w-5 h-5" />
+                            {loading ? 'Searching...' : 'Search Alumni'}
+                        </button>
+                    </div>
+                </div>
+
+                {/* Loading state */}
+                {loading && (
+                    <div className="text-center py-12">
+                        <div className="inline-block">
+                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+                        </div>
+                        <p className="text-gray-300 mt-4 text-lg">Searching alumni...</p>
+                    </div>
+                )}
+
+                {/* Error state */}
+                {error && (
+                    <div className="bg-red-900/50 border-2 border-red-700 rounded-lg p-6 mb-8">
+                        <p className="text-red-200 font-semibold">Error: {error}</p>
+                    </div>
+                )}
+
+                {/* Results */}
+                {!loading && hasSearched && results.length === 0 && !error ? (
+                    <div className="text-center py-12 bg-gray-900 rounded-lg border-2 border-gray-700">
+                        <p className="text-gray-400 text-lg">No alumni found matching your criteria.</p>
+                    </div>
+                ) : !loading && results.length > 0 ? (
+                    <>
+                        {/* Results Summary */}
+                        <div className="mb-6 flex items-center justify-between">
+                            <div className="bg-gray-900 border-l-4 border-gray-600 rounded-lg p-4">
+                                <p className="text-gray-300">
+                                    <span className="font-bold text-lg text-white">{totalCount}</span> results found • 
+                                    <span className="font-bold text-lg text-gray-200"> {results.length}</span> shown on page <span className="font-bold text-lg text-white">{currentPage}</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Table */}
+                        <div className="overflow-x-auto rounded-2xl shadow-lg border-2 border-gray-700">
+                            <table className="min-w-full bg-gray-900">
                                 <thead>
-                                    <tr>
-                                        <th className="px-4 py-2 border">
-                                            Name
-                                        </th>
-                                        <th className="px-4 py-2 border">
-                                            Roll Number
-                                        </th>
-                                        <th className="px-4 py-2 border">
-                                            Department
-                                        </th>
-                                        <th className="px-4 py-2 border">
-                                            Graduation Year
-                                        </th>
-                                        <th className="px-4 py-2 border">
-                                            Company
-                                        </th>
-                                        <th className="px-4 py-2 border">
-                                            City
-                                        </th>
-                                        <th className="px-4 py-2 border">
-                                            Batch
-                                        </th>
+                                    <tr className="bg-gray-800 text-white">
+                                        <th className="px-6 py-4 text-left font-semibold">Name</th>
+                                        <th className="px-6 py-4 text-left font-semibold">Roll Number</th>
+                                        <th className="px-6 py-4 text-left font-semibold">Department</th>
+                                        <th className="px-6 py-4 text-left font-semibold">Grad Year</th>
+                                        <th className="px-6 py-4 text-left font-semibold">Company</th>
+                                        <th className="px-6 py-4 text-left font-semibold">Location</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {results.map((alumni) => (
-                                        <tr key={alumni.rollNumber}>
-                                            <td className="px-4 py-2 border">
-                                                {alumni.name || 'NA'}
-                                            </td>
-                                            <td className="px-4 py-2 border">
-                                                {alumni.rollNumber || 'NA'}
-                                            </td>
-                                            <td className="px-4 py-2 border">
-                                                {alumni.department || 'NA'}
-                                            </td>
-                                            <td className="px-4 py-2 border">
-                                                {alumni.yearOfGraduation ??
-                                                    'NA'}
-                                            </td>
-                                            <td className="px-4 py-2 border">
-                                                {alumni.lastOrganization || 'NA'}
-                                            </td>
-                                            <td className="px-4 py-2 border">
+                                    {results.map((alumni, idx) => (
+                                        <tr 
+                                            key={alumni.rollNumber} 
+                                            className={`${idx % 2 === 0 ? 'bg-gray-900' : 'bg-gray-800'} hover:bg-gray-700 transition-colors border-b border-gray-700 relative`}
+                                            onMouseEnter={() => setHoveredRow(alumni.rollNumber)}
+                                            onMouseLeave={() => setHoveredRow(null)}
+                                        >
+                                            <td className="px-6 py-4 font-medium text-white">{alumni.name || 'NA'}</td>
+                                            <td className="px-6 py-4 text-gray-300">{alumni.rollNumber || 'NA'}</td>
+                                            <td className="px-6 py-4 text-gray-300">{alumni.department || 'NA'}</td>
+                                            <td className="px-6 py-4 text-gray-300">{alumni.yearOfGraduation ?? 'NA'}</td>
+                                            <td className="px-6 py-4 text-gray-300">{alumni.lastOrganization || 'NA'}</td>
+                                            <td className="px-6 py-4 text-gray-300 relative">
                                                 {alumni.currentLocationIndia || alumni.currentOverseasLocation || 'NA'}
+                                                {hoveredRow === alumni.rollNumber && (
+                                                    <button
+                                                        onClick={() => handleUpdateClick(alumni)}
+                                                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-lg flex items-center gap-2 shadow-lg transition-all transform hover:scale-105"
+                                                    >
+                                                        <Edit className="w-4 h-4" />
+                                                        Update Details
+                                                    </button>
+                                                )}
                                             </td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </table>
                         </div>
-                    )}
 
-                    <p className="mt-4 text-sm text-gray-600">
-                        If you have any changes to your details, please contact{' '}
-                        <a
-                            href="mailto:alumninet@iiitm.ac.in"
-                            className="text-customBlue hover:underline">
-                            alumninet@iiitm.ac.in
-                        </a>{' '}
-                        or{' '}
-                        <a
-                            href="https://google.com"
-                            target="_blank"
-                            className="text-customBlue hover:underline">
-                            update details
-                        </a>
-                        .
-                    </p>
-                    <p className="mt-1 text-xs text-gray-500">
-                        NA = Not Available
-                    </p>
-                </div>
-            </div>
-            <section id="network" className="py-16 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="mt-12 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                        <div className="bg-blue-50 rounded-lg p-6">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                                Official Channels
-                            </h3>
-                            <ul className="space-y-4">
-                                <li>
-                                    <span className="block font-medium">
-                                        Mailing List:
-                                    </span>
-                                    <a
-                                        href="mailto:alumni@iiitm.ac.in"
-                                        className="text-blue-600 hover:text-blue-800">
-                                        alumni@iiitm.ac.in
-                                    </a>
-                                </li>
-                                <li>
-                                    <span className="block font-medium">
-                                        Contact Email:
-                                    </span>
-                                    <a
-                                        href="mailto:alumninet@iiitm.ac.in"
-                                        className="text-blue-600 hover:text-blue-800">
-                                        alumninet@iiitm.ac.in
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        {/* Pagination */}
+                        <div className="mt-8">
+                            <div className="flex items-center justify-center gap-2 mb-6">
+                                <button
+                                    onClick={() => handlePrevPage()}
+                                    disabled={currentPage === 1}
+                                    className="px-4 py-2 border-2 border-gray-700 text-gray-300 bg-gray-900 font-semibold rounded-lg hover:bg-gray-800 disabled:bg-gray-800 disabled:text-gray-600 disabled:border-gray-800 disabled:cursor-not-allowed transition-all"
+                                >
+                                    ← Previous
+                                </button>
 
-                        <div className="bg-blue-50 rounded-lg p-6">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                                Social Media
-                            </h3>
-                            <ul className="space-y-4">
-                                <li>
-                                    <a
-                                        href="https://www.linkedin.com/groups/59379/"
-                                        target="_blank"
-                                        className="flex items-center text-blue-600 hover:text-blue-800">
-                                        <svg
-                                            className="w-5 h-5 mr-2"
-                                            fill="currentColor"
-                                            viewBox="0 0 20 20">
-                                            <path d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" />
-                                        </svg>
-                                        IIITM Alumni Network
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="https://www.facebook.com/groups/1496537263921717/"
-                                        target="_blank"
-                                        className="flex items-center text-blue-600 hover:text-blue-800">
-                                        <svg
-                                            className="w-5 h-5 mr-2"
-                                            fill="currentColor"
-                                            viewBox="0 0 20 20">
-                                            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
-                                        </svg>
-                                        Alumni Association
-                                    </a>
-                                </li>
-                                <li>
-                                    <p className="flex items-center text-blue-600">
-                                        To join IIITM WhatsApp Group, contact
-                                        Kunal Vardani at +91 99296 46997
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
+                                {/* Page numbers */}
+                                <div className="flex gap-1">
+                                    {Array.from(
+                                        { length: Math.ceil(totalCount / 20) },
+                                        (_, i) => i + 1
+                                    )
+                                        .filter((page) => {
+                                            const offset = 2;
+                                            return (
+                                                page === 1 ||
+                                                page === Math.ceil(totalCount / 20) ||
+                                                (page >= currentPage - offset &&
+                                                    page <= currentPage + offset)
+                                            );
+                                        })
+                                        .map((page, idx, arr) => (
+                                            <React.Fragment key={`page-${page}`}>
+                                                {idx > 0 && arr[idx - 1] !== page - 1 && (
+                                                    <span className="px-2 py-2 text-gray-500">...</span>
+                                                )}
+                                                <button
+                                                    onClick={() => handleSearch(page)}
+                                                    className={`px-3 py-2 rounded-lg font-semibold transition-all ${
+                                                        currentPage === page
+                                                            ? 'bg-gray-700 text-white shadow-lg'
+                                                            : 'border-2 border-gray-700 text-gray-300 bg-gray-900 hover:border-gray-600 hover:bg-gray-800'
+                                                    }`}
+                                                >
+                                                    {page}
+                                                </button>
+                                            </React.Fragment>
+                                        ))}
+                                </div>
 
-                        <div className="bg-blue-50 rounded-lg p-6">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                                Local Chapters
-                            </h3>
-                            <p className="text-gray-600 mb-4">Coming soon...</p>
-                            {/* <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
-                            Contact for Details
-                        </button> */}
+                                <button
+                                    onClick={() => handleNextPage()}
+                                    disabled={!hasMore}
+                                    className="px-4 py-2 border-2 border-gray-700 text-gray-300 bg-gray-900 font-semibold rounded-lg hover:bg-gray-800 disabled:bg-gray-800 disabled:text-gray-600 disabled:border-gray-800 disabled:cursor-not-allowed transition-all"
+                                >
+                                    Next →
+                                </button>
+                            </div>
                         </div>
+                    </>
+                ) : null}
+
+                {/* Additional Info */}
+                <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="bg-gray-900 rounded-xl shadow-lg p-6 border-t-4 border-gray-700">
+                        <h4 className="text-xl font-bold text-white mb-3">Update Your Details</h4>
+                        <p className="text-gray-300 mb-4">Keep your profile information current</p>
+                        <a href="mailto:alumninet@iiitm.ac.in" className="text-gray-200 font-semibold hover:text-white">Contact us →</a>
+                    </div>
+
+                    <div className="bg-gray-900 rounded-xl shadow-lg p-6 border-t-4 border-gray-600">
+                        <h4 className="text-xl font-bold text-white mb-3">Email Us</h4>
+                        <p className="text-gray-300 mb-4">For support and inquiries</p>
+                        <a href="mailto:alumninet@iiitm.ac.in" className="text-gray-200 font-semibold hover:text-white">alumninet@iiitm.ac.in →</a>
+                    </div>
+
+                    <div className="bg-gray-900 rounded-xl shadow-lg p-6 border-t-4 border-gray-500">
+                        <h4 className="text-xl font-bold text-white mb-3">Connect Social</h4>
+                        <p className="text-gray-300 mb-4">Join alumni on social platforms</p>
+                        <a href="https://www.linkedin.com/groups/59379/" target="_blank" className="text-gray-200 font-semibold hover:text-white">LinkedIn →</a>
                     </div>
                 </div>
-            </section>
+            </div>
+
+            {/* Update Details Dialog - Outside main content for proper z-index */}
+            {selectedAlumni && (
+                <UpdateDetailsDialog
+                    isOpen={isDialogOpen}
+                    onClose={() => {
+                        console.log('Dialog closing...');
+                        setIsDialogOpen(false);
+                        setSelectedAlumni(null);
+                    }}
+                    alumni={selectedAlumni}
+                    onSubmit={handleUpdateSubmit}
+                />
+            )}
         </section>
     );
 };
