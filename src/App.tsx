@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Guidelines from './components/Guidelines';
@@ -14,37 +15,72 @@ import Gallery from './components/Gallery';
 import AlumniMeetPage from './pages/AlumniMeet';
 import VolunteerPortal from './components/VolunteerPortal';
 import DirectoryPage from './pages/Directory';
+import ThemeToggle from './components/ThemeToggle';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 
 // Main site layout
-const MainSite = () => (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-950 to-gray-900 text-gray-100">
-        <Navbar />
-        <main>
-            {/* <Images /> */}
-            <Hero />
-            <Gallery />
-            <Campus />
-            {/* <TimeLines /> */}
-            {/* <Poster /> */}
-            <Guidelines />
-            <Message />
-            <Donate />
-            {/* <Contact /> */}
-        </main>
-        <Footer />
-    </div>
+const MainSite = () => {
+    const { theme } = useTheme();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.pathname !== '/') {
+            return;
+        }
+
+        if (location.hash) {
+            const targetId = location.hash.replace('#', '');
+            const element = document.getElementById(targetId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }, [location]);
+
+    const containerClasses =
+        theme === 'light'
+            ? 'bg-slate-50 text-slate-900'
+            : 'bg-gradient-to-br from-black via-gray-950 to-gray-900 text-gray-100';
+
+    return (
+        <div className={`min-h-screen ${containerClasses} transition-colors duration-300`}>
+            <Navbar />
+            <main>
+                {/* <Images /> */}
+                <Hero />
+                <Gallery />
+                <Campus />
+                {/* <TimeLines /> */}
+                {/* <Poster /> */}
+                <Guidelines />
+                <Message />
+                <Donate />
+                {/* <Contact /> */}
+            </main>
+            <Footer />
+        </div>
+    );
+};
+
+const AppRoutes = () => (
+    <Routes>
+        <Route path="/" element={<MainSite />} />
+        <Route path="/alumnimeet" element={<AlumniMeetPage />} />
+        <Route path="/directory" element={<DirectoryPage />} />
+        <Route path="/volunteer-portal-secret" element={<VolunteerPortal />} />
+    </Routes>
 );
 
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<MainSite />} />
-                <Route path="/alumnimeet" element={<AlumniMeetPage />} />
-                    <Route path="/directory" element={<DirectoryPage />} />
-                <Route path="/volunteer-portal-secret" element={<VolunteerPortal />} />
-            </Routes>
-        </BrowserRouter>
+        <ThemeProvider>
+            <BrowserRouter>
+                <AppRoutes />
+                <ThemeToggle />
+            </BrowserRouter>
+        </ThemeProvider>
     );
 }
 

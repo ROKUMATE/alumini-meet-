@@ -23,21 +23,21 @@ const Gallery = () => {
   ];
 
   return (
-    <section className="py-20 px-0 bg-transparent">
+    <section id="gallery" className="py-20 px-0 bg-transparent">
       <div className="max-w-7xl mx-auto px-6 mb-12" ref={titleRef}>
         <div className="text-center">
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">
+          <h2 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-4">
             Photo Gallery
           </h2>
-          <p className="text-gray-300 text-lg">Explore memorable moments from our alumni events</p>
+          <p className="text-slate-600 dark:text-gray-300 text-lg">Explore memorable moments from our alumni events</p>
         </div>
       </div>
 
       {/* Full-width Horizontal Scroll Gallery */}
       <div className="relative overflow-hidden" ref={galleryRef}>
         {/* Gradient overlays for smooth edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-black via-black to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-black via-black to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute left-0 top-0 bottom-0 w-12 gallery-fade-left z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-12 gallery-fade-right z-10 pointer-events-none"></div>
 
         <div className="overflow-x-auto scrollbar-hide">
           <div className="flex gap-6 p-6 pl-12 min-w-max">

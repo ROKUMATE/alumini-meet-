@@ -2,8 +2,152 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --background-color: #f8fafc;
+    --foreground-color: #0f172a;
+    --muted-foreground: #475569;
+    --card-background: #ffffff;
+    --subtle-background: #f1f5f9;
+    --accent-color: #1d4ed8;
+    color-scheme: light;
+}
+
 body {
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.theme-light {
+    color-scheme: light;
+}
+
+body.theme-dark {
+    --background-color: #020617;
+    --foreground-color: #e2e8f0;
+    --muted-foreground: #cbd5f5;
+    --card-background: #0f172a;
+    --subtle-background: #111c32;
+    --accent-color: #3b82f6;
     background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #1a1a1a 100%);
     background-attachment: fixed;
-    color: #e5e7eb;
+    color: var(--foreground-color);
+    color-scheme: dark;
+}
+
+body.theme-light .bg-gray-900 {
+    background-color: var(--card-background) !important;
+}
+
+body.theme-light .bg-gray-800 {
+    background-color: var(--subtle-background) !important;
+}
+
+body.theme-light .bg-gray-700 {
+    background-color: #e2e8f0 !important;
+}
+
+body.theme-light .bg-gray-600 {
+    background-color: #dbeafe !important;
+}
+
+body.theme-light .bg-black\/40 {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+body.theme-light .bg-white\/10 {
+    background-color: rgba(29, 78, 216, 0.12) !important;
+}
+
+body.theme-light .border-gray-800,
+body.theme-light .border-gray-700,
+body.theme-light .border-gray-600,
+body.theme-light .border-gray-500 {
+    border-color: rgba(148, 163, 184, 0.4) !important;
+}
+
+body.theme-light .border-white\/10 {
+    border-color: rgba(148, 163, 184, 0.25) !important;
+}
+
+body.theme-light .text-white,
+body.theme-light .text-gray-100 {
+    color: var(--foreground-color) !important;
+}
+
+body.theme-light .text-gray-200 {
+    color: #1e293b !important;
+}
+
+body.theme-light .text-gray-300 {
+    color: #334155 !important;
+}
+
+body.theme-light .text-gray-400 {
+    color: var(--muted-foreground) !important;
+}
+
+body.theme-light .text-purple-200 {
+    color: #6366f1 !important;
+}
+
+body.theme-light .text-emerald-300 {
+    color: #047857 !important;
+}
+
+body.theme-light .hover\:bg-gray-900:hover,
+body.theme-light .hover\:bg-gray-800:hover,
+body.theme-light .hover\:bg-gray-700:hover {
+    background-color: rgba(221, 232, 255, 0.7) !important;
+    color: var(--foreground-color) !important;
+}
+
+body.theme-light .hover\:text-white:hover {
+    color: var(--foreground-color) !important;
+}
+
+.force-white {
+    color: #ffffff !important;
+}
+
+body.theme-light .force-white {
+    color: #ffffff !important;
+}
+
+/* Keep button text legible on strong backgrounds */
+body.theme-light .bg-blue-600,
+body.theme-light .bg-blue-700,
+body.theme-light .bg-emerald-600,
+body.theme-light .bg-emerald-700,
+body.theme-light .bg-green-600,
+body.theme-light .bg-green-700 {
+    color: #ffffff !important;
+}
+
+/* Gallery fade overlays */
+body.theme-light .gallery-fade-left {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+}
+
+body.theme-light .gallery-fade-right {
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+}
+
+body.theme-dark .gallery-fade-left {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+}
+
+body.theme-dark .gallery-fade-right {
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+}
+
+body.theme-light input.bg-gray-800,
+body.theme-light input.bg-gray-900,
+body.theme-light textarea.bg-gray-900 {
+    background-color: #ffffff !important;
+    color: var(--foreground-color) !important;
 }

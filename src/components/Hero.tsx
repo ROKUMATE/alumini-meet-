@@ -57,15 +57,15 @@ const Hero = () => {
                     </div>
                     
                     {/* Main heading */}
-                    <h1 className="text-5xl tracking-tight font-extrabold text-white sm:text-6xl md:text-7xl mb-8 leading-tight" data-hero="heading">
+                    <h1 className="text-5xl tracking-tight font-extrabold text-slate-900 sm:text-6xl md:text-7xl mb-8 leading-tight dark:text-white" data-hero="heading">
                         <span className="block mb-2">ABV-IIITM</span>
-                        <span className="block text-gray-200">
+                        <span className="block text-slate-700 dark:text-gray-200">
                             Alumni Network
                         </span>
                     </h1>
                     
                     {/* Subtitle */}
-                    <p className="mt-8 max-w-md mx-auto text-base text-purple-100 sm:text-lg md:mt-10 md:text-xl md:max-w-3xl leading-relaxed" data-hero="subtitle">
+                    <p className="mt-8 max-w-md mx-auto text-base text-slate-700 sm:text-lg md:mt-10 md:text-xl md:max-w-3xl leading-relaxed dark:text-purple-100" data-hero="subtitle">
                         Connect with your alma mater, network with fellow alumni, and stay involved with the IIITM community across the globe
                     </p>
                     
@@ -97,7 +97,7 @@ const Hero = () => {
                         <div className="w-full">
                             <Link
                                 to="/alumnimeet"
-                                className="w-full flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl text-white bg-gray-700 hover:bg-gray-600 md:py-5 md:text-lg md:px-10 transition-all duration-200 shadow-xl transform hover:scale-105"
+                                className="w-full flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl force-white text-white bg-black md:py-5 md:text-lg md:px-10 transition-transform duration-200 shadow-xl transform hover:scale-105 dark:bg-gray-700"
                             >
                                 Explore Alumni Meet
                             </Link>
@@ -116,16 +116,16 @@ const Hero = () => {
                     {/* Stats */}
                     <div className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-8 max-w-2xl mx-auto" data-hero="stats">
                         <div className="text-center">
-                            <p className="text-3xl md:text-4xl font-bold text-emerald-300">5000+</p>
-                            <p className="text-purple-200 text-sm mt-2">Active Alumni</p>
+                            <p className="text-3xl md:text-4xl font-bold text-emerald-700 dark:text-emerald-300">5000+</p>
+                            <p className="text-slate-600 text-sm mt-2 dark:text-purple-200">Active Alumni</p>
                         </div>
                         <div className="text-center">
-                            <p className="text-3xl md:text-4xl font-bold text-violet-300">50+</p>
-                            <p className="text-purple-200 text-sm mt-2">Countries</p>
+                            <p className="text-3xl md:text-4xl font-bold text-indigo-700 dark:text-violet-300">50+</p>
+                            <p className="text-slate-600 text-sm mt-2 dark:text-purple-200">Countries</p>
                         </div>
                         <div className="text-center md:col-span-1 col-span-2">
-                            <p className="text-3xl md:text-4xl font-bold text-emerald-300">100+</p>
-                            <p className="text-purple-200 text-sm mt-2">Companies</p>
+                            <p className="text-3xl md:text-4xl font-bold text-emerald-700 dark:text-emerald-300">100+</p>
+                            <p className="text-slate-600 text-sm mt-2 dark:text-purple-200">Companies</p>
                         </div>
                     </div>
                 </div>
