@@ -62,10 +62,11 @@ const Message = () => {
                 <h3 className="text-2xl font-bold text-white mb-1">Message from Dean</h3>
                 <p className="text-sm text-gray-300 font-semibold mb-4">Prof. Pramod Kumar Singh</p>
                 <div className="w-12 h-1 bg-gray-600 rounded-full mb-4"></div>
-                <p className="text-gray-300 leading-relaxed text-sm">
-                  Dear Alumnus,<br /><br />
-                  Warm greetings to all! On behalf of office of Career Development & Placement Cell services at IIITM Gwalior and my personal behalf, I welcome you to our webpage. It's a matter of great pride to mention that we IIITians at Gwalior, celebrating the 25th year of establishment are among the most preferred institutes in IT and CS.
-                </p>
+                  <p className="text-gray-300 leading-relaxed text-sm">
+                    Dear Alumni,<br /><br />
+                    Your journeys continue to inspire the institute every day. As we prepare for the upcoming Alumni Meet, I invite you to share your stories, guide our students, and help us expand opportunities that reflect the values we built together at ABV-IIITM. Your presence energises our community and reminds us that the campus remains a home for every batch.<br /><br />
+                    We look forward to celebrating your achievements, strengthening collaborations, and charting the next chapter for our alma mater together.
+                  </p>
               </div>
             </div>
           </div>

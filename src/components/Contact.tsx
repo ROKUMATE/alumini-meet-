@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const ContactCard = () => {

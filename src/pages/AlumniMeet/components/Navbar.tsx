@@ -43,7 +43,7 @@ const AlumniMeetNavbar = () => {
                         ))}
 
                         <a
-                            href="https://forms.gle/3uHB9GgVaZDCNdUC6"
+                            href="https://forms.gle/kV4GqQhJKNKFP7QP6"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="ml-4 rounded-md bg-blue-600 px-5 py-2 text-white

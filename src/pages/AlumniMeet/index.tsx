@@ -1,7 +1,6 @@
 import AlumniMeetNavbar from './components/Navbar';
 import AlumniMeetHero from './components/Hero';
 import AlumniMeetFooter from './components/Footer';
-import AlumniMeetTimeline from './components/TimeLine';
 import AlumniInfoAndTimeline from './components/AlumniInfoAndTimeline';
 import ContactCard from './components/ContactCard';
 import { useTheme } from '../../context/ThemeContext';

@@ -1,13 +1,13 @@
 const AlumniInfoAndTimeline = () => {
     return (
         <section className="bg-gray-50 dark:bg-gray-900 py-24 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
-            <div className="max-w-[1500px] mx-auto">
+            <div className="max-w-[1500px] mx-auto flex justify-center">
 
                 {/* Cards Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div className="grid grid-cols-1 place-items-center gap-12 w-full">
 
                     {/* Timeline Card */}
-                    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-10 flex flex-col justify-between transition-colors duration-300">
+                    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-10 flex flex-col justify-between transition-colors duration-300 max-w-xl w-full">
                         <div>
                             <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
                                 Event Timeline
@@ -28,7 +28,7 @@ const AlumniInfoAndTimeline = () => {
                     </div>
 
                     {/* Alumni Association Card */}
-                    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-10 flex flex-col justify-between transition-colors duration-300">
+                    {/* <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-10 flex flex-col justify-between transition-colors duration-300">
                         <div>
                             <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
                                 ABV-IIITM Gwalior Alumni Association
@@ -59,7 +59,7 @@ const AlumniInfoAndTimeline = () => {
                                 Visit Alumni Website
                             </a>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>

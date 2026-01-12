@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Guidelines from './components/Guidelines';
 import Campus from './components/Campus';
 import Donate from './components/Donate';
 import Footer from './components/Footer';

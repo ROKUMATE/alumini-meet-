@@ -154,7 +154,7 @@ const Hero = () => {
                             </h2>
                         </div>
                         <p className="text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-200/90">
-                            Relive your IIITM memories with curated panels, campus walks, and reunion mixers designed to bring every batch together this February.
+                            Relive your IIITM memories with curated panels, campus walks, and reunion mixers designed to bring every batch together this March.
                         </p>
                         <div className="pt-1">
                             <Link

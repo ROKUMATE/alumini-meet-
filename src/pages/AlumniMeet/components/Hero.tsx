@@ -67,7 +67,7 @@ const AlumniMeetHero = () => {
                     {/* CTA */}
                     <div className="mt-10">
                         <a
-                            href="https://forms.gle/3uHB9GgVaZDCNdUC6"
+                            href="https://forms.gle/kV4GqQhJKNKFP7QP6"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center px-10 py-4 rounded-md text-lg font-semibold
