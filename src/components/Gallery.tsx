@@ -21,6 +21,7 @@ const Gallery = () => {
       alt: "Gallery Image 4"
     }
   ];
+  const marqueeImages = [...images, ...images];
 
   return (
     <section id="gallery" className="py-20 px-0 bg-transparent">
@@ -33,66 +34,81 @@ const Gallery = () => {
         </div>
       </div>
 
-      {/* Full-width Horizontal Scroll Gallery */}
+      {/* Full-width Marquee Gallery */}
       <div className="relative overflow-hidden" ref={galleryRef}>
         {/* Gradient overlays for smooth edges */}
         <div className="absolute left-0 top-0 bottom-0 w-12 gallery-fade-left z-10 pointer-events-none"></div>
         <div className="absolute right-0 top-0 bottom-0 w-12 gallery-fade-right z-10 pointer-events-none"></div>
 
-        <div className="overflow-x-auto scrollbar-hide">
-          <div className="flex gap-6 p-6 pl-12 min-w-max">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 group"
-              >
-                <div className="relative w-96 h-screen-70 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 bg-gray-900">
-                  {/* Image container */}
-                  <div className="w-full h-full bg-gray-900 overflow-hidden">
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                  </div>
-
-                  {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
-                    <div className="p-8 text-white w-full">
-                      <p className="text-lg font-semibold">Memory #{index + 1}</p>
-                      <p className="text-sm text-gray-200 mt-2">Click to explore more</p>
+        <div className="relative">
+          <div className="marquee-track flex gap-6 p-6 pl-12 animate-marquee">
+            {marqueeImages.map((image, index) => {
+              const isDuplicate = index >= images.length;
+              return (
+                <div
+                  key={`${image.src}-${index}`}
+                  className="flex-shrink-0 group"
+                  aria-hidden={isDuplicate}
+                >
+                  <div className="relative w-96 h-screen-70 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105 bg-gray-900">
+                    {/* Image container */}
+                    <div className="w-full h-full bg-gray-900 overflow-hidden">
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
                     </div>
-                  </div>
 
-                  {/* Border accent */}
-                  <div className="absolute inset-0 border border-white/10 rounded-3xl pointer-events-none"></div>
+                    {/* Gradient overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
+                      <div className="p-8 text-white w-full">
+                        <p className="text-lg font-semibold">Memory #{(index % images.length) + 1}</p>
+                        <p className="text-sm text-gray-200 mt-2">Hover to pause</p>
+                      </div>
+                    </div>
+
+                    {/* Border accent */}
+                    <div className="absolute inset-0 border border-white/10 rounded-3xl pointer-events-none"></div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="flex justify-center mt-12">
+      {/* <div className="flex justify-center mt-12">
         <div className="flex gap-3 items-center">
           <svg className="w-5 h-5 text-gray-200 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
           </svg>
-          <p className="text-gray-400 font-medium">Scroll horizontally to view</p>
+          <p className="text-gray-400 font-medium">Gallery plays automatically — hover to pause</p>
           <svg className="w-5 h-5 text-gray-200 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
           </svg>
         </div>
-      </div>
+      </div> */}
 
       <style>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
+        .marquee-track {
+          width: max-content;
         }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
+        .animate-marquee {
+          display: inline-flex;
+          animation: marquee 35s linear infinite;
+        }
+        .animate-marquee:hover {
+          animation-play-state: paused;
+        }
+        @keyframes marquee {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
         }
         .h-screen-70 {
           height: 70vh;

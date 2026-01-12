@@ -9,13 +9,13 @@ const AlumniMeetNavbar = () => {
     };
 
     return (
-        <nav className="fixed top-0 w-full z-50 bg-white backdrop-blur-md border-b border-gray-200">
+        <nav className="fixed top-0 w-full z-50 bg-white dark:bg-gray-900 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
             <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20 items-center justify-between">
 
                     {/* Logo / Back Link */}
                     <div className="flex items-center gap-3">
-                        <Link to="/" className="flex items-center gap-2 text-gray-800 hover:text-blue-600 transition">
+                        <Link to="/" className="flex items-center gap-2 text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                             </svg>
@@ -34,7 +34,7 @@ const AlumniMeetNavbar = () => {
                                 key={label}
                                 href={link}
                                 onClick={handleLinkClick}
-                                className="relative text-gray-600 hover:text-blue-600 transition
+                                className="relative text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition
                                            after:absolute after:-bottom-1 after:left-0
                                            after:h-[2px] after:w-0 after:bg-blue-600
                                            hover:after:w-full after:transition-all">
@@ -56,7 +56,7 @@ const AlumniMeetNavbar = () => {
                     <div className="md:hidden">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="p-2 rounded-md text-gray-700 hover:bg-gray-100 transition">
+                            className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                             <svg
                                 className="h-6 w-6"
                                 fill="none"
@@ -80,12 +80,12 @@ const AlumniMeetNavbar = () => {
 
             {/* Mobile Menu */}
             {isOpen && (
-                <div className="md:hidden bg-white border-t border-gray-200 shadow-lg">
+                <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg transition-colors duration-300">
                     <div className="px-6 py-5 space-y-4 text-sm font-medium">
                         <Link
                             to="/"
                             onClick={handleLinkClick}
-                            className="block text-gray-700 hover:text-blue-600 transition">
+                            className="block text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
                             ← Back to Main Site
                         </Link>
                         {[
@@ -97,7 +97,7 @@ const AlumniMeetNavbar = () => {
                                 key={label}
                                 href={link}
                                 onClick={handleLinkClick}
-                                className="block text-gray-700 hover:text-blue-600 transition">
+                                className="block text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
                                 {label}
                             </a>
                         ))}

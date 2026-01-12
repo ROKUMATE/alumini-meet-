@@ -9,7 +9,7 @@ function AlumniMeetTimeline() {
                     <h3 className="text-2xl font-semibold mb-4">
                         Day 1: 15th February, 2026
                     </h3>
-                    <ul className="list-disc list-inside mb-4 space-y-2 text-gray-700">
+                    <ul className="list-disc list-inside mb-4 space-y-2 text-gray-700 dark:text-gray-300">
                         <li>
                             <strong>Welcome and Reception/Breakfast:</strong> 9
                             AM to 10 AM
@@ -36,7 +36,7 @@ function AlumniMeetTimeline() {
                             </strong>{' '}
                             3 PM to 4 PM
                         </li>
-                        <ul className="list-disc list-inside ml-5 space-y-1 text-gray-600">
+                        <ul className="list-disc list-inside ml-5 space-y-1 text-gray-600 dark:text-gray-400">
                             <li>
                                 Felicitation of the Silver Jubilee and Crystal
                                 Jubilee Batches
@@ -62,7 +62,7 @@ function AlumniMeetTimeline() {
                             <strong>Distinguished Alumni Talks:</strong> 5 to 6
                             PM
                         </li>
-                        <ul className="list-disc list-inside ml-5 space-y-1 text-gray-600">
+                        <ul className="list-disc list-inside ml-5 space-y-1 text-gray-600 dark:text-gray-400">
                             <li>
                                 Distinguished Alumni Awardees Talk (Corporate)
                             </li>
@@ -90,7 +90,7 @@ function AlumniMeetTimeline() {
                     <h3 className="text-2xl font-semibold mb-4">
                         Day 2: 16th February, 2026
                     </h3>
-                    <ul className="list-disc list-inside mb-4 space-y-2 text-gray-700">
+                    <ul className="list-disc list-inside mb-4 space-y-2 text-gray-700 dark:text-gray-300">
                         <li>
                             <strong>Breakfast:</strong> 9 AM to 10 AM
                         </li>
@@ -101,7 +101,7 @@ function AlumniMeetTimeline() {
                             </strong>{' '}
                             10 AM to 11:30 AM
                         </li>
-                        <ul className="list-disc list-inside ml-5 space-y-1 text-gray-600">
+                        <ul className="list-disc list-inside ml-5 space-y-1 text-gray-600 dark:text-gray-400">
                             <li>Institute Alumni Relations</li>
                             <li>Focus Groups</li>
                             <li>
@@ -113,7 +113,7 @@ function AlumniMeetTimeline() {
                         <li>
                             <strong>Talks:</strong> 11:30 AM to 1:30 PM
                         </li>
-                        <ul className="list-disc list-inside ml-5 space-y-1 text-gray-600">
+                        <ul className="list-disc list-inside ml-5 space-y-1 text-gray-600 dark:text-gray-400">
                             <li>
                                 Distinguished Alumni Awardees Talk (Women
                                 Alumni)
@@ -131,7 +131,7 @@ function AlumniMeetTimeline() {
                         <li>
                             <strong>Talks:</strong> 3 to 4 PM
                         </li>
-                        <ul className="list-disc list-inside ml-5 space-y-1 text-gray-600">
+                        <ul className="list-disc list-inside ml-5 space-y-1 text-gray-600 dark:text-gray-400">
                             <li>Alumni Connect Talk 3</li>
                             <li>Alumni Connect Talk 4</li>
                             <li>Alumni Connect Talk 5</li>
@@ -159,7 +159,7 @@ function AlumniMeetTimeline() {
     ];
 
     return (
-        <div id="timeline" className="w-full bg-white">
+        <div id="timeline" className="w-full bg-white dark:bg-gray-900 transition-colors duration-300">
             <Timeline data={data} />
         </div>
     );

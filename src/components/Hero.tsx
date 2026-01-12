@@ -1,7 +1,8 @@
 // import Image from "../assets/Poster.png";
 import { useSequenceAnimation } from '../hooks/useScrollAnimation';
 import { Link } from 'react-router-dom';
-import AlumniMeetBanner from '../assets/5.png';
+import AlumniMeetBanner from '../assets/premium.png';
+import DirectoryBanner from '../assets/College5.png';
 
 const Hero = () => {
     const heroRef = useSequenceAnimation({
@@ -36,6 +37,7 @@ const Hero = () => {
     });
 
     return (
+        <>
         <div className="pt-24 md:pt-28 relative overflow-hidden min-h-screen flex items-center justify-center">
             {/* Background */}
             <div className="absolute inset-0 bg-transparent">
@@ -76,7 +78,7 @@ const Hero = () => {
                                 href="https://forms.gle/jpsTnk42FB8514jE8"
                                 target="_blank"
                                 className="w-full flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl text-white bg-blue-600 hover:bg-blue-700 md:py-5 md:text-lg md:px-10 transition-all duration-200 transform hover:scale-105"
-                            >
+                                >
                                 <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 10l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                                 </svg>
@@ -84,33 +86,16 @@ const Hero = () => {
                             </a>
                         </div>
 
-                        {/* Alumni Meet Banner */}
-                        <div className="w-full mx-auto my-6">
-                            <Link to="/alumnimeet" className="block">
-                                <img 
-                                    src={AlumniMeetBanner} 
-                                    alt="Alumni Meet 2026 Banner" 
-                                    className="w-full h-auto rounded-xl shadow-2xl transform transition-transform hover:scale-105"
-                                />
-                            </Link>
-                        </div>
-                        <div className="w-full">
+                        {/* <div className="w-full">
                             <Link
-                                to="/alumnimeet"
-                                className="w-full flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl force-white text-white bg-black md:py-5 md:text-lg md:px-10 transition-transform duration-200 shadow-xl transform hover:scale-105 dark:bg-gray-700"
+                            to="/alumnimeet"
+                            className="w-full flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl force-white text-white bg-black md:py-5 md:text-lg md:px-10 transition-transform duration-200 shadow-xl transform hover:scale-105 dark:bg-gray-700"
                             >
-                                Explore Alumni Meet
+                            Explore Alumni Meet
                             </Link>
-                        </div>
+                            </div> */}
 
-                        <div className="w-full">
-                            <Link
-                                to="/directory"
-                                className="w-full flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl text-white bg-emerald-600 hover:bg-emerald-500 md:py-5 md:text-lg md:px-10 transition-all duration-200 shadow-xl transform hover:scale-105"
-                            >
-                                View Directory
-                            </Link>
-                        </div>
+                        
                     </div>
 
                     {/* Stats */}
@@ -121,7 +106,7 @@ const Hero = () => {
                         </div>
                         <div className="text-center">
                             <p className="text-3xl md:text-4xl font-bold text-indigo-700 dark:text-violet-300">50+</p>
-                            <p className="text-slate-600 text-sm mt-2 dark:text-purple-200">Countries</p>
+                            <p className="text-slate-600 text-sm mt-2 dark:text-purple-200">Cities</p>
                         </div>
                         <div className="text-center md:col-span-1 col-span-2">
                             <p className="text-3xl md:text-4xl font-bold text-emerald-700 dark:text-emerald-300">100+</p>
@@ -131,29 +116,125 @@ const Hero = () => {
                 </div>
             </div>
 
+            
+
             <style>{`
                 @keyframes blob {
                     0%, 100% {
                         transform: translate(0, 0) scale(1);
-                    }
-                    33% {
-                        transform: translate(30px, -50px) scale(1.1);
-                    }
-                    66% {
-                        transform: translate(-20px, 20px) scale(0.9);
-                    }
-                }
-                .animate-blob {
-                    animation: blob 7s infinite;
-                }
-                .animation-delay-2000 {
-                    animation-delay: 2s;
-                }
-                .animation-delay-4000 {
-                    animation-delay: 4s;
-                }
-            `}</style>
+                        }
+                        33% {
+                            transform: translate(30px, -50px) scale(1.1);
+                            }
+                            66% {
+                                transform: translate(-20px, 20px) scale(0.9);
+                                }
+                                }
+                                .animate-blob {
+                                    animation: blob 7s infinite;
+                                    }
+                                    .animation-delay-2000 {
+                                        animation-delay: 2s;
+                                        }
+                                        .animation-delay-4000 {
+                                            animation-delay: 4s;
+                                            }
+                                            `}</style>
         </div>
+
+        
+        <section className="w-full px-4 sm:px-6 lg:px-12 pb-16">
+            <div className="max-w-screen mx-auto overflow-hidden">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-stretch">
+                    <div className="p-8 sm:p-12 lg:col-span-2 flex flex-col justify-center gap-5">
+                        <div>
+                            <p className="uppercase tracking-[0.35em] text-xs sm:text-sm text-slate-500 dark:text-slate-300/80">Alumni Meet 2026</p>
+                            <h2 className="mt-3 text-3xl sm:text-4xl font-semibold text-slate-900 dark:text-white">
+                                Return to campus. Reconnect with your people.
+                            </h2>
+                        </div>
+                        <p className="text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-200/90">
+                            Relive your IIITM memories with curated panels, campus walks, and reunion mixers designed to bring every batch together this February.
+                        </p>
+                        <div className="pt-1">
+                            <Link
+                                to="/alumnimeet"
+                                className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white bg-blue-600/90 hover:bg-blue-500 transition-colors duration-200 shadow-md focus-visible:outline force-white  focus-visible:outline-blue-500"
+                            >
+                                Explore Alumni Meet
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                                </svg>
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div
+                        className="relative block lg:col-span-3 min-h-[42vh] sm:min-h-[52vh] lg:min-h-[60vh] group focus:outline-none rounded-3xl overflow-hidden"
+                    >
+                        <img
+                            src={AlumniMeetBanner}
+                            alt="Alumni Meet 2026 Banner"
+                            className="w-full h-full object-cover transition-transform duration-[700ms] ease-[cubic-bezier(.22,1,.36,1)]"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/55 via-slate-900/30 to-slate-900/55 transition-opacity duration-500" />
+                        <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 text-white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div className="w-full px-4 sm:px-6 lg:px-12 mb-16">
+            <div className="h-px w-full bg-gradient-to-r from-transparent via-black/70 to-transparent dark:via-slate-600/70"></div>
+        </div>
+
+         <section className="w-full px-4 sm:px-6 lg:px-12 pb-16">
+            <div className="max-w-screen mx-auto overflow-hidden">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-stretch">
+                    
+
+                    <div
+                        className="relative block lg:col-span-3 min-h-[42vh] sm:min-h-[52vh] lg:min-h-[60vh] group focus:outline-none rounded-3xl overflow-hidden"
+                    >
+                        <img
+                            src={DirectoryBanner}
+                            alt="Alumni Directory collage"
+                            className="w-full h-full object-cover transition-transform duration-[700ms] ease-[cubic-bezier(.22,1,.36,1)]"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/55 via-slate-900/30 to-slate-900/55 transition-opacity duration-500" />
+                        <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 text-white">
+                        </div>
+                    </div>
+
+                    {/* Directory Introductory */}
+                    <div className="p-8 sm:p-12 lg:col-span-2 flex flex-col justify-center gap-5">
+                        <div>
+                            <p className="uppercase tracking-[0.35em] text-xs sm:text-sm text-slate-500 dark:text-slate-300/80">Alumni Directory</p>
+                            <h2 className="mt-3 text-3xl sm:text-4xl font-semibold text-slate-900 dark:text-white">
+                                Find classmates, mentors, and future collaborators.
+                            </h2>
+                        </div>
+                        <p className="text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-200/90">
+                            Browse the curated IIITM alumni directory with advanced search filters by batch, company, or expertise. Reconnect instantly and grow your professional circle across continents.
+                        </p>
+                        <div className="pt-1">
+                            <Link
+                                to="/directory"
+                                className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white bg-emerald-600/90 hover:bg-emerald-500 transition-colors duration-200 shadow-md focus-visible:outline focus-visible:outline-emerald-500 force-white"
+                            >
+                                View Directory
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                                </svg>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        </>
     );
 };
 

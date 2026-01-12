@@ -4,7 +4,7 @@ const AlumniMeetHero = () => {
     return (
         <section
             id="hero"
-            className="relative min-h-screen flex items-center"
+            className="relative min-h-screen flex items-center bg-white"
         >
             {/* Background Image */}
             <div
@@ -17,7 +17,7 @@ const AlumniMeetHero = () => {
 
             {/* Content */}
             <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32">
-                <div className="max-w-3xl text-white">
+                <div className="max-w-3xl text-white force-white">
 
                     <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
                         <span className="block">Welcome to the</span>
@@ -26,7 +26,7 @@ const AlumniMeetHero = () => {
                         </span>
                     </h1>
 
-                    <p className="mt-6 text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">
+                    <p className="mt-6 text-base sm:text-lg md:text-xl leading-relaxed force-white">
                         <span className="font-semibold">Dear Alumni,</span>
                         <br />
                         <br />
@@ -47,7 +47,7 @@ const AlumniMeetHero = () => {
                         For any queries, please contact us at{" "}
                         <a
                             href="mailto:alumninet@iiitm.ac.in"
-                            className="underline text-blue-400 hover:text-blue-300"
+                            className="underline force-white hover:text-blue-200"
                         >
                             alumninet@iiitm.ac.in
                         </a>
@@ -57,7 +57,7 @@ const AlumniMeetHero = () => {
                         <span className="block font-medium">
                             Sincerely,
                         </span>
-                        Prof. Anurag Srivastava
+                        Prof. Pramod Kumar Singh
                         <br />
                         Dean of Alumni and External Relations
                         <br />

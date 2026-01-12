@@ -54,7 +54,7 @@ const MainSite = () => {
                 <Campus />
                 {/* <TimeLines /> */}
                 {/* <Poster /> */}
-                <Guidelines />
+                {/* <Guidelines /> */}
                 <Message />
                 <Donate />
                 {/* <Contact /> */}
