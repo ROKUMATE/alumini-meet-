@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Check, X, Eye, RefreshCw, LogOut } from 'lucide-react';
-import { API_BASE_URL } from '../config/api';
 
 interface UpdateRequest {
     _id: string;
@@ -12,6 +11,10 @@ interface UpdateRequest {
     reviewedAt?: string;
     notes?: string;
 }
+
+// Use environment variable for API URL
+const DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
+console.log('VolunteerPortal - DATABASE_URL loaded:', DATABASE_URL || 'NOT SET');
 
 const VolunteerPortal: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -56,10 +59,10 @@ const VolunteerPortal: React.FC = () => {
             params.append('page', page.toString());
             params.append('limit', '20');
 
-            console.log('Fetching requests with URL:', API_BASE_URL + `api/volunteer/update-requests`);
+            console.log('Fetching requests with URL:', DATABASE_URL + `api/volunteer/update-requests`);
             console.log('Authorization header:', `Bearer ${storedSecret?.substring(0, 5)}...`);
 
-            const response = await fetch(API_BASE_URL + `api/volunteer/update-requests?${params.toString()}`, {
+            const response = await fetch(DATABASE_URL + `api/volunteer/update-requests?${params.toString()}`, {
                 headers: {
                     'Authorization': `Bearer ${storedSecret}`,
                 },
@@ -98,7 +101,7 @@ const VolunteerPortal: React.FC = () => {
         setProcessingId(requestId);
         try {
             const storedSecret = localStorage.getItem('volunteerSecret');
-            const response = await fetch(API_BASE_URL + `api/volunteer/update-requests/${requestId}/approve`, {
+            const response = await fetch(DATABASE_URL + `api/volunteer/update-requests/${requestId}/approve`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -125,7 +128,7 @@ const VolunteerPortal: React.FC = () => {
         setProcessingId(requestId);
         try {
             const storedSecret = localStorage.getItem('volunteerSecret');
-            const response = await fetch(API_BASE_URL + `api/volunteer/update-requests/${requestId}/reject`, {
+            const response = await fetch(DATABASE_URL + `api/volunteer/update-requests/${requestId}/reject`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

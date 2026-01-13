@@ -2,7 +2,6 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import React, { useState } from 'react';
 import { Search, Edit } from 'lucide-react';
 import UpdateDetailsDialog from './UpdateDetailsDialog';
-import { API_BASE_URL } from '../config/api';
 
 interface Alumni {
     name: string;
@@ -31,6 +30,8 @@ interface Alumni {
     achievements?: string;
     photoLink?: string;
 }
+
+const DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
 
 const Network: React.FC = () => {
     const headerRef = useScrollAnimation({ yStart: 50, opacityStart: 0 });
@@ -67,7 +68,7 @@ const Network: React.FC = () => {
             params.append('page', page.toString());
             params.append('limit', pageSize.toString());
 
-            const url = API_BASE_URL + `api/search?${params.toString()}`;
+            const url = DATABASE_URL + `api/search?${params.toString()}`;
 
             // Add timeout for slow network/cold starts
             const controller = new AbortController();
@@ -117,7 +118,7 @@ const Network: React.FC = () => {
     };
 
     const handleUpdateSubmit = async (updatedData: Partial<Alumni>) => {
-        const url = API_BASE_URL + 'api/update-request';
+        const url = DATABASE_URL + 'api/update-request';
 
         const response = await fetch(url, {
             method: 'POST',
@@ -342,8 +343,8 @@ const Network: React.FC = () => {
                                                 <button
                                                     onClick={() => handleSearch(page)}
                                                     className={`px-3 py-2 rounded-lg font-semibold transition-all ${currentPage === page
-                                                        ? 'bg-gray-700 text-white shadow-lg'
-                                                        : 'border-2 border-gray-700 text-gray-300 bg-gray-900 hover:border-gray-600 hover:bg-gray-800'
+                                                            ? 'bg-gray-700 text-white shadow-lg'
+                                                            : 'border-2 border-gray-700 text-gray-300 bg-gray-900 hover:border-gray-600 hover:bg-gray-800'
                                                         }`}
                                                 >
                                                     {page}
