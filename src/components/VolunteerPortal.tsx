@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Check, X, Eye, RefreshCw, LogOut } from 'lucide-react';
+import { API_BASE_URL } from '../config/api';
 
 interface UpdateRequest {
     _id: string;
@@ -11,10 +12,6 @@ interface UpdateRequest {
     reviewedAt?: string;
     notes?: string;
 }
-
-// Use environment variable with fallback to production URL
-const DATABASE_URL = import.meta.env.VITE_DATABASE_URL || 'https://alumini-meet-backend-icd3.onrender.com/';
-console.log('VolunteerPortal - DATABASE_URL loaded:', DATABASE_URL);
 
 const VolunteerPortal: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -59,10 +56,10 @@ const VolunteerPortal: React.FC = () => {
             params.append('page', page.toString());
             params.append('limit', '20');
 
-            console.log('Fetching requests with URL:', DATABASE_URL + `api/volunteer/update-requests`);
+            console.log('Fetching requests with URL:', API_BASE_URL + `api/volunteer/update-requests`);
             console.log('Authorization header:', `Bearer ${storedSecret?.substring(0, 5)}...`);
 
-            const response = await fetch(DATABASE_URL + `api/volunteer/update-requests?${params.toString()}`, {
+            const response = await fetch(API_BASE_URL + `api/volunteer/update-requests?${params.toString()}`, {
                 headers: {
                     'Authorization': `Bearer ${storedSecret}`,
                 },
@@ -101,7 +98,7 @@ const VolunteerPortal: React.FC = () => {
         setProcessingId(requestId);
         try {
             const storedSecret = localStorage.getItem('volunteerSecret');
-            const response = await fetch(DATABASE_URL + `api/volunteer/update-requests/${requestId}/approve`, {
+            const response = await fetch(API_BASE_URL + `api/volunteer/update-requests/${requestId}/approve`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -128,7 +125,7 @@ const VolunteerPortal: React.FC = () => {
         setProcessingId(requestId);
         try {
             const storedSecret = localStorage.getItem('volunteerSecret');
-            const response = await fetch(DATABASE_URL + `api/volunteer/update-requests/${requestId}/reject`, {
+            const response = await fetch(API_BASE_URL + `api/volunteer/update-requests/${requestId}/reject`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -190,7 +187,7 @@ const VolunteerPortal: React.FC = () => {
                 <div className="bg-gray-800 rounded-2xl shadow-2xl p-8 w-full max-w-md border-2 border-gray-700">
                     <h1 className="text-3xl font-bold text-white mb-2">Volunteer Portal</h1>
                     <p className="text-gray-400 mb-6">Alumni Update Management</p>
-                    
+
                     <form onSubmit={handleLogin}>
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -204,13 +201,13 @@ const VolunteerPortal: React.FC = () => {
                                 placeholder="Enter volunteer secret key"
                             />
                         </div>
-                        
+
                         {authError && (
                             <div className="mb-4 bg-red-900/50 border border-red-700 rounded-lg p-3">
                                 <p className="text-red-200 text-sm">{authError}</p>
                             </div>
                         )}
-                        
+
                         <button
                             type="submit"
                             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors"
@@ -263,11 +260,10 @@ const VolunteerPortal: React.FC = () => {
                                     setStatusFilter(status);
                                     setCurrentPage(1);
                                 }}
-                                className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
-                                    statusFilter === status
-                                        ? 'bg-blue-600 text-white'
-                                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                                }`}
+                                className={`px-4 py-2 rounded-lg font-semibold transition-colors ${statusFilter === status
+                                    ? 'bg-blue-600 text-white'
+                                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                    }`}
                             >
                                 {status.charAt(0).toUpperCase() + status.slice(1)}
                             </button>
@@ -278,7 +274,7 @@ const VolunteerPortal: React.FC = () => {
                 {/* Statistics */}
                 <div className="bg-gray-800 rounded-2xl shadow-xl p-6 mb-6 border-2 border-gray-700">
                     <p className="text-gray-300">
-                        <span className="font-bold text-lg text-white">{totalCount}</span> total requests • 
+                        <span className="font-bold text-lg text-white">{totalCount}</span> total requests •
                         <span className="font-bold text-lg text-gray-200"> {requests.length}</span> shown on page <span className="font-bold text-lg text-white">{currentPage}</span>
                     </p>
                 </div>
@@ -313,13 +309,12 @@ const VolunteerPortal: React.FC = () => {
                                                 {request.rollNumber}
                                             </span>
                                             <span
-                                                className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                                                    request.status === 'pending'
-                                                        ? 'bg-yellow-900/50 text-yellow-200'
-                                                        : request.status === 'approved'
+                                                className={`px-3 py-1 rounded-full text-xs font-semibold ${request.status === 'pending'
+                                                    ? 'bg-yellow-900/50 text-yellow-200'
+                                                    : request.status === 'approved'
                                                         ? 'bg-green-900/50 text-green-200'
                                                         : 'bg-red-900/50 text-red-200'
-                                                }`}
+                                                    }`}
                                             >
                                                 {request.status.toUpperCase()}
                                             </span>
@@ -327,7 +322,7 @@ const VolunteerPortal: React.FC = () => {
                                         <p className="text-gray-400 text-sm mb-3">
                                             Submitted: {new Date(request.submittedAt).toLocaleString()}
                                         </p>
-                                        
+
                                         {/* Preview of changes */}
                                         <div className="bg-gray-900 rounded-lg p-4 mb-3">
                                             <p className="text-sm font-semibold text-gray-300 mb-2">
@@ -344,7 +339,7 @@ const VolunteerPortal: React.FC = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="flex gap-2 ml-4">
                                         <button
                                             onClick={() => {
@@ -356,7 +351,7 @@ const VolunteerPortal: React.FC = () => {
                                             <Eye className="w-4 h-4" />
                                             View
                                         </button>
-                                        
+
                                         {request.status === 'pending' && (
                                             <>
                                                 <button
@@ -421,7 +416,7 @@ const VolunteerPortal: React.FC = () => {
                                 <X className="w-6 h-6" />
                             </button>
                         </div>
-                        
+
                         <div className="overflow-y-auto max-h-[calc(90vh-180px)] px-6 py-6">
                             <div className="space-y-4">
                                 {getChangedFields(selectedRequest.oldData, selectedRequest.newData).map((change, idx) => (
@@ -447,7 +442,7 @@ const VolunteerPortal: React.FC = () => {
                                 ))}
                             </div>
                         </div>
-                        
+
                         {selectedRequest.status === 'pending' && (
                             <div className="bg-gray-800 px-6 py-4 flex justify-end gap-3 border-t-2 border-gray-700">
                                 <button
