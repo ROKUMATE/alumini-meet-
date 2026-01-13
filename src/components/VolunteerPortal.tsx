@@ -12,9 +12,9 @@ interface UpdateRequest {
     notes?: string;
 }
 
-// Debug environment variable
-const DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
-console.log('VolunteerPortal - DATABASE_URL loaded:', DATABASE_URL || 'NOT FOUND');
+// Use environment variable with fallback to production URL
+const DATABASE_URL = import.meta.env.VITE_DATABASE_URL || 'https://alumini-meet-backend-icd3.onrender.com/';
+console.log('VolunteerPortal - DATABASE_URL loaded:', DATABASE_URL);
 
 const VolunteerPortal: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);

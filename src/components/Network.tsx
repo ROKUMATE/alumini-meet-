@@ -31,7 +31,8 @@ interface Alumni {
     photoLink?: string;
 }
 
-const DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
+// Use environment variable with fallback to production URL
+const DATABASE_URL = import.meta.env.VITE_DATABASE_URL || 'https://alumini-meet-backend-icd3.onrender.com/';
 
 const Network: React.FC = () => {
     const headerRef = useScrollAnimation({ yStart: 50, opacityStart: 0 });
@@ -70,7 +71,13 @@ const Network: React.FC = () => {
             
             const url = DATABASE_URL + `api/search?${params.toString()}`;
 
-            const res = await fetch(url);
+            // Add timeout for slow network/cold starts
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000); // 30s timeout for cold starts
+
+            const res = await fetch(url, { signal: controller.signal });
+            clearTimeout(timeoutId);
+            
             if (!res.ok) {
                 throw new Error('Failed to fetch results');
             }
@@ -81,7 +88,11 @@ const Network: React.FC = () => {
             setTotalCount(total || 0);
             setHasMore(more || false);
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'An error occurred during search');
+            if (err instanceof Error && err.name === 'AbortError') {
+                setError('Request timed out. The server may be starting up, please try again.');
+            } else {
+                setError(err instanceof Error ? err.message : 'An error occurred during search');
+            }
             setResults([]);
         } finally {
             setLoading(false);
