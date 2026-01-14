@@ -31,8 +31,8 @@ interface Alumni {
     photoLink?: string;
 }
 
-// Use environment variable with fallback to production URL
-const DATABASE_URL = import.meta.env.VITE_DATABASE_URL || 'https://alumini-meet-backend-icd3.onrender.com/';
+const rawUrl = import.meta.env.VITE_DATABASE_URL || '';
+const DATABASE_URL = rawUrl.endsWith('/') ? rawUrl : `${rawUrl}/`;
 
 const Network: React.FC = () => {
     const headerRef = useScrollAnimation({ yStart: 50, opacityStart: 0 });
@@ -58,7 +58,7 @@ const Network: React.FC = () => {
         setLoading(true);
         setError(null);
         setHasSearched(true);
-        
+
         try {
             const params = new URLSearchParams();
             if (nameQuery) params.append('name', nameQuery);
@@ -68,7 +68,7 @@ const Network: React.FC = () => {
             if (batchQuery) params.append('batch', batchQuery);
             params.append('page', page.toString());
             params.append('limit', pageSize.toString());
-            
+
             const url = DATABASE_URL + `api/search?${params.toString()}`;
 
             // Add timeout for slow network/cold starts
@@ -77,11 +77,11 @@ const Network: React.FC = () => {
 
             const res = await fetch(url, { signal: controller.signal });
             clearTimeout(timeoutId);
-            
+
             if (!res.ok) {
                 throw new Error('Failed to fetch results');
             }
-            
+
             const { data, totalCount: total, hasMore: more } = await res.json();
             setResults(data);
             setCurrentPage(page);
@@ -120,7 +120,7 @@ const Network: React.FC = () => {
 
     const handleUpdateSubmit = async (updatedData: Partial<Alumni>) => {
         const url = DATABASE_URL + 'api/update-request';
-        
+
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -260,7 +260,7 @@ const Network: React.FC = () => {
                         <div className="mb-6 flex items-center justify-between">
                             <div className="bg-gray-900 border-l-4 border-gray-600 rounded-lg p-4">
                                 <p className="text-gray-300">
-                                    <span className="font-bold text-lg text-white">{totalCount}</span> results found • 
+                                    <span className="font-bold text-lg text-white">{totalCount}</span> results found •
                                     <span className="font-bold text-lg text-gray-200"> {results.length}</span> shown on page <span className="font-bold text-lg text-white">{currentPage}</span>
                                 </p>
                             </div>
@@ -281,8 +281,8 @@ const Network: React.FC = () => {
                                 </thead>
                                 <tbody>
                                     {results.map((alumni, idx) => (
-                                        <tr 
-                                            key={alumni.rollNumber} 
+                                        <tr
+                                            key={alumni.rollNumber}
                                             className={`${idx % 2 === 0 ? 'bg-gray-900' : 'bg-gray-800'} hover:bg-gray-700 transition-colors border-b border-gray-700 relative`}
                                             onMouseEnter={() => setHoveredRow(alumni.rollNumber)}
                                             onMouseLeave={() => setHoveredRow(null)}
@@ -343,11 +343,10 @@ const Network: React.FC = () => {
                                                 )}
                                                 <button
                                                     onClick={() => handleSearch(page)}
-                                                    className={`px-3 py-2 rounded-lg font-semibold transition-all ${
-                                                        currentPage === page
-                                                            ? 'bg-gray-700 text-white shadow-lg'
-                                                            : 'border-2 border-gray-700 text-gray-300 bg-gray-900 hover:border-gray-600 hover:bg-gray-800'
-                                                    }`}
+                                                    className={`px-3 py-2 rounded-lg font-semibold transition-all ${currentPage === page
+                                                        ? 'bg-gray-700 text-white shadow-lg'
+                                                        : 'border-2 border-gray-700 text-gray-300 bg-gray-900 hover:border-gray-600 hover:bg-gray-800'
+                                                        }`}
                                                 >
                                                     {page}
                                                 </button>
