@@ -13,7 +13,8 @@ interface UpdateRequest {
 }
 
 // Use environment variable for API URL
-const DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
+const rawUrl = import.meta.env.VITE_DATABASE_URL || '';
+const DATABASE_URL = rawUrl.endsWith('/') ? rawUrl : `${rawUrl}/`;
 console.log('VolunteerPortal - DATABASE_URL loaded:', DATABASE_URL || 'NOT SET');
 
 const VolunteerPortal: React.FC = () => {
