@@ -1,4 +1,4 @@
-import { Trophy, Award, Medal, User, GraduationCap, Crown } from 'lucide-react';
+import { Trophy, GraduationCap } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
