@@ -1,10 +1,15 @@
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
-import Network from '../../components/Network';
+import { useEffect } from 'react';
+import Navbar from '../../components/Navbar'; // Adjust import if needed
+import Footer from '../../components/Footer'; // Adjust import if needed
+import Network from '../../components/Network'; // Adjust import if needed
 
 const DirectoryPage = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-gray-100">
@@ -18,7 +23,7 @@ const DirectoryPage = () => {
                     ← Back to Main
                 </button>
             </div>
-            <main>
+            <main className="pt-12">
                 <Network />
             </main>
             <Footer />

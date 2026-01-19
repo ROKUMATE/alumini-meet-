@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Message from './components/Message';
 // import Contact from './components/Contact';
 import Gallery from './components/Gallery';
+import DistinguishedAlumni from './components/DistinguishedAlumni';
 // import Images from './components/StarterImages';
 // import TimeLines from './components/TimeLine';
 // import Poster from "./components/Poster";
@@ -49,6 +50,7 @@ const MainSite = () => {
             <main>
                 {/* <Images /> */}
                 <Hero />
+                <DistinguishedAlumni />
                 <Gallery />
                 <Campus />
                 {/* <TimeLines /> */}
