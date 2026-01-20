@@ -6,11 +6,8 @@ import Campus from './components/Campus';
 import Donate from './components/Donate';
 import Footer from './components/Footer';
 import Message from './components/Message';
-// import Contact from './components/Contact';
 import Gallery from './components/Gallery';
-// import Images from './components/StarterImages';
-// import TimeLines from './components/TimeLine';
-// import Poster from "./components/Poster";
+import DistinguishedAlumni from './components/DistinguishedAlumni';
 import AlumniMeetPage from './pages/AlumniMeet';
 import VolunteerPortal from './components/VolunteerPortal';
 import DirectoryPage from './pages/Directory';
@@ -47,16 +44,12 @@ const MainSite = () => {
         <div className={`min-h-screen ${containerClasses} transition-colors duration-300`}>
             <Navbar />
             <main>
-                {/* <Images /> */}
                 <Hero />
                 <Gallery />
                 <Campus />
-                {/* <TimeLines /> */}
-                {/* <Poster /> */}
-                {/* <Guidelines /> */}
+                <DistinguishedAlumni />
                 <Message />
                 <Donate />
-                {/* <Contact /> */}
             </main>
             <Footer />
         </div>
