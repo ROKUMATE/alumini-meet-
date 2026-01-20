@@ -46,8 +46,8 @@ const MainSite = () => {
             <main>
                 <Hero />
                 <Gallery />
-                <Campus />
                 <DistinguishedAlumni />
+                <Campus />
                 <Message />
                 <Donate />
             </main>
